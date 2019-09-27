@@ -1,18 +1,12 @@
 {
-    "name": "filippofinke/php-mvc",
-    "description": "Simple MVC base for php",
+    "name": "luca6/chiasso-tv",
+    "description": "Official ChiassoTv.ch website",
+    "type": "project",
     "authors": [
         {
-            "name": "filippofinke",
-            "email": "filippo.finke@samtrevano.ch"
+            "name": "Luca Di Bello",
+            "email": "luca.dibello@samtrevano.ch"
         }
     ],
-    "autoload": {
-    	"psr-4": {
-    		"Controllers\\":"application/controllers/",
-    		"Libs\\":"application/libs/",
-    		"Models\\":"application/models/"
-    	}
-    },
     "require": {}
 }
