@@ -1,0 +1,12 @@
+{
+    "name": "luca6/chiasso-tv",
+    "description": "Official ChiassoTv.ch website",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Luca Di Bello",
+            "email": "luca.dibello@samtrevano.ch"
+        }
+    ],
+    "require": {}
+}
