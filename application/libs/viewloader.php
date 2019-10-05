@@ -2,8 +2,13 @@
 
 class ViewLoader
 {
-    public static function load($template)
+    public static function load($template, $args=null)
     {
-        require_once __DIR__ . '/../views/'.$template.'.php';
+        if(is_array($args)){
+            foreach($args as $name=>$value){
+                $$name = $value;
+            }
+        }
+        require_once DIR . "application/views/". $template . '.php';
     }
 }

@@ -72,4 +72,12 @@ class Application
             // echo 'Parameter 3: ' . $this->url_parameter_3 . '<br />';
         }
     }
+
+    public static function redirect($path){
+        Header("Location: " . self::buildUrl($path));
+    }
+
+    public static function buildUrl($path){
+        return URL . $path;
+    }
 }

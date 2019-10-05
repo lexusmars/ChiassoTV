@@ -1,21 +1,24 @@
 <?php
-// carico il file di configurazione
-require 'application/config/config.php';
 
-// carico le classi dell'applicazione
-require 'application/libs/application.php';
+require __DIR__ . '/application/config/config.php';
+require __DIR__ . '/vendor/autoload.php';
 
-// Lib for page loading
-require 'application/libs/viewloader.php';
+foreach($autoload_directories as $directory) {
+    $files = glob($directory.'*.php');
+    foreach($files as $file) {
+        $path = __DIR__.'/'.$file;
+        require_once $path;
+    }
+}
 
-// Lib for authentication
-require 'application/libs/auth.php';
+session_start();
 
-// Lib for notification management
-require 'application/libs/notifier.php';
+// setup database variables
+DB::$user = DATABASE_USERNAME;
+DB::$password = DATABASE_PASSWORD;
+DB::$dbName = DATABASE_NAME;
 
-// Composer autoload
-require 'vendor/autoload.php';
+$GLOBALS["NOTIFIER"] = new Notifier();
 
 // faccio partire l'applicazione
 $app = new Application();
