@@ -91,20 +91,20 @@
                     <div class="card-header"><h3 class="h3-responsive">Categorie</h3></div>
                     <div class="card-body">
                         <?php if (count($categories) > 0): ?>
-                        <table id="categoriesTable" class="table-striped table-responsive" width="100%">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome categoria</th>
-                                <th scope="col">Numero episodi</th>
-                                <th scope="col">Descrizione</th>
-                                <th scope="col">Path immagine</th>
-                                <th scope="col">Data creazione</th>
-                                <th scope="col">Ultima modifica</th>
-                                <th scope="col">Azioni</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                            <table id="categoriesTable" class="table-striped table-responsive" width="100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome categoria</th>
+                                    <th scope="col">Numero episodi</th>
+                                    <th scope="col">Descrizione</th>
+                                    <th scope="col">Path immagine</th>
+                                    <th scope="col">Data creazione</th>
+                                    <th scope="col">Ultima modifica</th>
+                                    <th scope="col">Azioni</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 <?php foreach ($categories as $category): ?>
                                     <tr>
                                         <td scope="row"><?php echo $category->getCategoryId() + 1; ?></td>
@@ -128,8 +128,8 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                         <?php else: ?>
                             <h3 class="h3-responsive">Non ci sono categorie.</h3>
                         <?php endif; ?>
@@ -233,6 +233,10 @@
     </div>
 </main>
 
+<!-- Modal manager -->
+<script type="text/javascript" src="/application/assets/js/admin/categories/modalmanager.js"></script>
+
+<!-- DataTables.js -->
 <script src="/application/assets/js/addons/datatables.min.js"></script>
 <script>
     //TODO: CHECK HERE

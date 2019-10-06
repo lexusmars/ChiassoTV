@@ -12,9 +12,7 @@ class Admin
         // Check user auth status
         if(Auth::isAuthenticated()){
             // If logged in: show index page (admin panel)
-            //ViewLoader::load("templates/admin_header");
             $this->home();
-            //ViewLoader::load("templates/admin_footer");
         }
         else{
             // If not authenticated, show login page
@@ -56,10 +54,11 @@ class Admin
         if(Auth::isAuthenticated()){
             if($id != null && is_numeric($id)) {
                 $category  = CategoriesModel::getCategory($id);
+                $episodes = EpisodeModel::getCategoryEpisodes($category);
 
                 ViewLoader::load("admin/templates/header");
                 ViewLoader::load("admin/episodes_manager",array(
-                    "category"=>$category,
+                    "category"=>$category, "episodes"=>$episodes
                 ));
                 ViewLoader::load("admin/templates/footer");
             }

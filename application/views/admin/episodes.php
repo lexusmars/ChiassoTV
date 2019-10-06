@@ -11,11 +11,9 @@
                 <h4 class="mb-2 mb-sm-0 pt-1">
                     <span class="blue-text font-weight-bold">Admin Panel</span>
                     <span>/</span>
-                    <span>Gestione categorie</span>
-
+                    <span>Gestione episodi</span>
                 </h4>
             </div>
-
         </div>
         <!-- Heading -->
         <br>
@@ -35,7 +33,7 @@
                                     <?php endif; ?>
 
                                     <!-- Card -->
-                                    <div class="card">
+                                    <div class="card" style="max-width: 20rem; max-height: 30rem; margin-right: 2rem;">
 
                                         <!-- Card image -->
                                         <div class="view overlay">
@@ -47,14 +45,14 @@
                                         </div>
 
                                         <!-- Card content -->
-                                        <div class="card-body">
+                                        <div class="card-body d-flex flex-column">
                                             <!-- Title -->
                                             <h4 class="card-title"><?php echo $category->getCategoryName(); ?></h4>
                                             <!-- Text -->
                                             <p class="card-text"><?php echo $category->getCategoryDescription(); ?></p>
                                             <!-- Button -->
                                             <a href="/admin/episodes/<?php echo $category->getCategoryId(); ?>"
-                                               class="btn btn-primary">Modifica episodi</a>
+                                               class="btn btn-primary mt-auto">Modifica episodi</a>
                                         </div>
                                     </div>
 
@@ -76,7 +74,7 @@
             <!--Copyright-->
             <div class="footer-copyright py-3">
                 © 2019 Copyright:
-                <a href="https://chiassotv.ch/" target="_blank"><?php echo APP_NAME ?></a>
+                <a href="https://chiassotv.ch/" rel="noreferrer" target="_blank"><?php echo APP_NAME ?></a>
             </div>
             <!--/.Copyright-->
 

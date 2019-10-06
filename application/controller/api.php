@@ -45,4 +45,19 @@ class Api
             Application::redirect("admin");
         }
     }
+
+    public function episode($action, $category=null, $episode=null){
+        if(Auth::isAuthenticated()){
+            $GLOBALS["NOTIFIER"]->clear();
+            if($action=="delete" && !is_null($category) && !is_null($episode)){
+                if(!EpisodeModel::delete($episode, $category)){
+                    $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare la categoria.");
+                }
+                Application::redirect("admin/episodes/$category");
+            }
+        }
+        else{
+            Application::redirect("admin/episodes");
+        }
+    }
 }
