@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-define('URL', 'http://195.202.196.149:8123/');
+define('URL', 'http://localhost:8123/');
 define('DIR', 'C:/Users/luca6/Google Drive/Repo/ChiassoTV/');
 
 define('CATEGORIES_IMG_PATH', DIR . '/application/assets/img/categories/');

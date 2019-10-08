@@ -75,6 +75,7 @@ class Application
 
     public static function redirect($path){
         Header("Location: " . self::buildUrl($path));
+        exit();
     }
 
     public static function buildUrl($path){

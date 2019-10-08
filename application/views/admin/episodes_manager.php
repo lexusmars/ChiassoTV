@@ -26,7 +26,8 @@
                 <div class="card" id="add-episode">
                     <div class="card-header"><h3 class="h3-responsive">Aggiungi episodio</h3></div>
                     <div class="card-body">
-                        <?php if (count($GLOBALS["NOTIFIER"]->getNotifications())): ?>
+
+                        <?php if (count($GLOBALS["NOTIFIER"]->getNotifications()) > 0): ?>
                             <!-- Write notifications -->
                             <br>
                             <?php foreach ($GLOBALS["NOTIFIER"]->getNotifications() as $notification): ?>
@@ -38,17 +39,17 @@
                             <?php $GLOBALS["NOTIFIER"]->clear(); ?>
                         <?php endif; ?>
 
-                        <form class="form" method="post" action="/api/episode/add">
+                        <form class="form" method="post" action="/api/episode/add/<?php echo $category->getCategoryId(); ?>">
 
                             <!-- Episode name -->
                             <div class="md-form">
-                                <input type="text" id="nomeEpisodio" class="form-control" name="episodeName" required>
+                                <input type="text" id="nomeEpisodio" class="form-control" name="title" required>
                                 <label for="nomeEpisodio">Nome episodio<span class="red-text">*</span></label>
                             </div>
 
                             <!-- Episode desciption -->
                             <div class="md-form">
-                                <textarea id="descrizioneEpisodio" name="episodeDescription"
+                                <textarea id="descrizioneEpisodio" name="description"
                                           class="form-control md-textarea" length="1024" rows="3"></textarea>
                                 <label for="descrizioneEpisodio">Descrizione episodio</label>
                             </div>
@@ -59,7 +60,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text md-addon" id="material-addon3">https://www.youtube.com/embed/</span>
                                 </div>
-                                <input type="text" class="form-control" id="material-url" aria-describedby="material-addon3">
+                                <input type="text" class="form-control" name="link" id="material-url" aria-describedby="material-addon3">
                             </div>
 
                             <!-- Add category button -->
