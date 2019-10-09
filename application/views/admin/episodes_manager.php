@@ -93,21 +93,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($episodes as $episode): ?>
-                                    <tr id="episode-<?php echo $episode->getEpisodeNumber();?>-record">
-                                        <td scope="row" id="episodeNumber"><?php echo $episode->getEpisodeNumber(); ?></td>
+                                <?php foreach ($episodes as $key=>$episode): ?>
+                                    <tr id="episode-<?php echo $episode->getEpisodeIdentifierNumber();?>-record">
+
+                                        <td scope="row" id="episodeNumber"><?php echo $key+1; ?></td>
                                         <td id="episodeTitle"><?php echo $episode->getTitle(); ?></td>
                                         <td id="episodeDescription"><?php echo $episode->getDescription(); ?></td>
-                                        <td id="episodeLink"><a href="https://www.youtube.com/watch?v=<?php echo $episode->getLink();?>">Apri video</a></td>
+                                        <td id="episodeLink" episode-identifier="<?php echo $episode->getLink();?>"><a href="https://www.youtube.com/watch?v=<?php echo $episode->getLink();?>">Apri video</a></td>
                                         <td id="episodeCreationDatetime"><?php echo $episode->getCreationDatetime(); ?></td>
                                         <td>
-                                            <button class="btn btn-blue-grey edit-episode-button">
+                                            <button class="btn btn-blue-grey edit-episode-button"
+                                                    episode-target="<?php echo $episode->getEpisodeIdentifierNumber();?>">
                                                 Modifica
                                             </button>
 
-                                            <button class="btn btn-danger delete-episode-button" data-toggle="modal"
-                                                    data-target="#modalConfirmDelete"
-                                                    episode-target="<?php echo $episode->getEpisodeNumber();?>">
+                                            <button class="btn btn-danger delete-episode-button"
+                                                    episode-target="<?php echo $episode->getEpisodeIdentifierNumber();?>">
                                                 Elimina
                                             </button>
                                         </td>
@@ -166,6 +167,57 @@
         </div>
     </div>
     <!--Modal: modalConfirmDelete-->
+
+    <!--Modal: editEpisode -->
+    <div class="modal fade" id="editEpisodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+
+        <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica episodio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalUpdateForm" class="form" method="post">
+                        <!-- Category name -->
+                        <div class="md-form">
+                            <input type="text" id="episodeNameModal" class="form-control" name="title" required>
+                            <label for="episodeNameModal">Nome episodio<span class="red-text">*</span></label>
+                        </div>
+
+                        <!-- Category desciption -->
+                        <div class="md-form">
+                            <textarea id="episodeDescriptionModal" name="description"
+                                      class="form-control md-textarea" length="1024" rows="3"></textarea>
+                            <!--
+                            <input type="text" id="descrizioneCategoriaModal" name="categoryDescription" class="form-control">
+                            -->
+                            <label for="episodeDescriptionModal">Descrizione episodio</label>
+                        </div>
+
+                        <label class="mb-0 ml-2" for="material-url">Link dell'episodio</label>
+                        <div class="md-form input-group mt-0 mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text md-addon" id="material-addon3">https://www.youtube.com/embed/</span>
+                            </div>
+                            <input type="text" class="form-control" name="link" id="episodeLinkModal" aria-describedby="material-addon3">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+                    <button id="submitSalvaModificheModal" type="button" class="btn btn-primary">Salva modifiche</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal: editEpisode -->
+
 
 </main>
 <script src="/application/assets/js/admin/episode_manager/modalmanager.js"></script>

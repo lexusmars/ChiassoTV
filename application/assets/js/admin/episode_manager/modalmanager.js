@@ -21,31 +21,32 @@ $('.delete-episode-button').on("click", function(){
     console.log("[*] Opened delete confirmation modal")
 });
 
-/*
-$('.edit-category-button').on("click", function () {
-    let episode_number = row.find("#episodeNumber").text();
 
-    // get category id
-    let id = $(this).attr("category-target");
+$('.edit-episode-button').on("click", function () {
+    let episodeId = $(this).attr("episode-target");
+    let categoryId = $('#episodesTable').attr("category-target");
 
-    // read all data
-    let categoryName = $("#categoryName" + id).text();
-    let categoryDescription = $("#categoryDescription" + id).text();
-    let categoryImagePath = $("#categoryImagePath" + id).text();
+    // Select data row in table
+    let row = $("#episode-" + episodeId + "-record");
+
+    // get usefull data
+    let episode_title = row.find("#episodeTitle").text();
+    let episode_desc = row.find("#episodeDescription").text();
+    let episode_link = row.find("#episodeLink").attr("episode-identifier");
 
     // insert data into modal
-    $("#nomeCategoriaModal").val(categoryName).trigger("change");
-    $("#descrizioneCategoriaModal").val(categoryDescription).trigger("change");
-    $('#categoryImagePath').val(categoryImagePath);
+    $("#episodeNameModal").val(episode_title).trigger("change");
+    $("#episodeDescriptionModal").val(episode_desc).trigger("change");
+    $('#episodeLinkModal').val(episode_link).trigger("change");
 
-    $("#modalUpdateForm").prop("action", "/api/category/update/" + id);
+    // Setup new link for api call
+    $("#modalUpdateForm").prop("action", '/api/episode/update/'+ categoryId +'/' + episodeId);
 
     // show modal
-    $('#editCategory').modal('show');
+    $('#editEpisodeModal').modal('show');
     console.log("[*] Opened edit category modal");
 
     $("#submitSalvaModificheModal").on("click", function () {
         $("#modalUpdateForm").submit();
     });
 });
-*/

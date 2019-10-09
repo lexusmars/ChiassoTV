@@ -58,8 +58,6 @@ class Episode
     }
     */
 
-
-
     /**
      * @return string
      */
@@ -87,7 +85,7 @@ class Episode
     /**
      * @return string
      */
-    public function getEpisodeNumber(): string{
+    public function getEpisodeIdentifierNumber(): string{
         return $this->episode_number;
     }
 }

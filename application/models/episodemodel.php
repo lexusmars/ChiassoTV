@@ -44,6 +44,25 @@ class EpisodeModel
         }
     }
 
+    public static function update(array $data, string $username, int $category_id, int $episode_id)
+    {
+        if(self::validate($data)){
+            $result = DB::update("episode", array(
+                "title" => $data["title"],
+                "description" => $data["description"],
+                "link" => $data["link"],
+                "created_by" => $username,
+                "category_id" => $category_id
+            ), "episode_number=%d", $episode_id);
+
+            return !$result ? array("C'è stato un problema durante l'aggiornamento dei dati all'interno del 
+                database. Se l'errore persiste contatta l'amministratore") : true;
+        }
+        else{
+            return self::$errors;
+        }
+    }
+
     /*
      * TODO: FINISH THESE METHODS
     public static function countEpisodes(){

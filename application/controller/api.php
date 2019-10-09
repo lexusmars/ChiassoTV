@@ -69,6 +69,20 @@ class Api
                 Application::redirect("admin/episodes/$category");
             }
 
+            if($action=="update" && !is_null($category) && !is_null($episode) && $_SERVER["REQUEST_METHOD"] == "POST"){
+                //TODO: Finish update
+                // Sanitize POST data and add record to database
+                $result = EpisodeModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING),
+                    $_SESSION["user"]->getUsername(), $category, $episode);
+
+                // If it detects errors
+                if(is_array($result)){
+                    $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+
+                Application::redirect("admin/episodes/$category");
+            }
+
             Application::redirect("admin/episodes");
         }
         else{
