@@ -44,6 +44,20 @@
         .top-nav-collapse {
             background-color: #4285F4;
         }
+
+        .card-img-top {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .card-img-top {
+                width: 100%;
+                height: 30vh;
+                object-fit: cover;
+            }
+        }
     </style>
 </head>
 
