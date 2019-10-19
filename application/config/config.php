@@ -9,7 +9,7 @@ define('CATEGORIES_IMG_PATH', DIR . '/application/assets/img/categories/');
 
 define('CATEGORIES_IMG_LINK','/application/assets/img/categories/');
 define('DEFAULT_CATEGORY_IMG', "not_found.jpg");
-
+define('N_NEWEST_VIDEOS_HOMEPAGE', 10);
 define('EPISODES_MANAGER_CATEGORIES_PER_ROW', 3);
 
 $autoload_directories = array(

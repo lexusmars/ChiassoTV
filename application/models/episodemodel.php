@@ -113,4 +113,10 @@ class EpisodeModel
 
         return count(self::$errors) == 0;
     }
+
+    /* Used in homepage */
+    public static function getNewestVideos($n_videos){
+        $result = DB::query("SELECT * FROM episode order by created_on desc LIMIT %d", $n_videos);
+        return self::parseEpisodes($result);
+    }
 }
