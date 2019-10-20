@@ -11,12 +11,18 @@ class EpisodeModel
     private static $errors = [];
 
     public function getEpisodes(): array{
-        return self::parseEpisodes(DB::query("SELECT * FROM episode"));
+        return self::parseEpisodes(DB::query("SELECT * FROM episode ORDER BY created_on DESC"));
     }
 
     public static function getCategoryEpisodes(Category $category){
         return self::parseEpisodes(DB::query(
-            "SELECT * FROM episode WHERE category_id = %d", $category->getCategoryId())
+            "SELECT * FROM episode WHERE category_id = %d ORDER BY created_on DESC", $category->getCategoryId())
+        );
+    }
+
+    public static function getCategoryEpisodesById($category_id){
+        return self::parseEpisodes(DB::query(
+            "SELECT * FROM episode WHERE category_id = %d ORDER BY created_on DESC", $category_id)
         );
     }
 

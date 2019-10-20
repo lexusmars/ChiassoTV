@@ -10,7 +10,10 @@ define('CATEGORIES_IMG_PATH', DIR . '/application/assets/img/categories/');
 define('CATEGORIES_IMG_LINK','/application/assets/img/categories/');
 define('DEFAULT_CATEGORY_IMG', "not_found.jpg");
 define('N_NEWEST_VIDEOS_HOMEPAGE', 10);
+define('N_CATEGORIES_HOMEPAGE',4);
 define('EPISODES_MANAGER_CATEGORIES_PER_ROW', 3);
+define('YOUTUBE_EMBEDDED_VIDEOS_LINK_BASE', "https://www.youtube.com/embed/");
+define('YOUTUBE_THUMBNAIL_LINK_BASE', "https://img.youtube.com/vi/%s/mqdefault.jpg");
 
 $autoload_directories = array(
     "application/libs/",

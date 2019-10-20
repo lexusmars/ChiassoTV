@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <meta name="description" content="ChiassoTV admin panel">
-    <meta name="keywords" content="Management,Admin,Admin panel,ChiassoTV">
+    <meta name="description" content="ChiassoTV home page">
+    <meta name="keywords" content="Home page,Web TV,Chiasso, Ticino, Switzerland,ChiassoTV">
     <meta name="author" content="Luca Di Bello,Giacomo Morandi Editore Switzerland">
 
-    <title><?php echo APP_NAME ?> - Pannello Admin</title>
+    <title><?php echo APP_NAME ?> - la web tv ticinese</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -24,63 +24,75 @@
     <!-- Personal stylesheet -->
     <link rel="stylesheet" href="/application/assets/css/style.css">
 
-    <style>
+</head>
+<style>
 
-        .map-container {
-            overflow: hidden;
-            padding-bottom: 56.25%;
-            position: relative;
-            height: 0;
-        }
+    .map-container {
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        height: 0;
+    }
 
-        .map-container iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-        }
+    .map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
 
-        .top-nav-collapse {
-            background-color: #4285F4;
-        }
+    .top-nav-collapse {
+        background-color: #4285F4;
+    }
 
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+
+    @media only screen and (max-width: 600px) {
         .card-img-top {
             width: 100%;
-            height: 15vw;
+            height: 30vh;
             object-fit: cover;
         }
+    }
+    /*
+    .active{
+        transition: 1s;
+        background-color: #0f0f0f;
+    }
+    */
 
-        @media only screen and (max-width: 600px) {
-            .card-img-top {
-                width: 100%;
-                height: 30vh;
-                object-fit: cover;
-            }
-        }
-    </style>
-</head>
+    .nav-link{
+        color: black;
+    }
 
-<body class="grey lighten-3">
+</style>
 
+<body class="grey lighten-3" data-spy="scroll" data-target="#chiassoTvNavbar" data-offset="0">
 
 <!--Main Navigation-->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#"><strong><?php echo APP_NAME; ?></strong></a>
+<header class="d-none">
+    <nav id="chiassoTvNavbar" class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="/application/assets/img/logo/logo.png" height="40" alt="ChiassoTV logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Chiasso News <span class="sr-only">(current)</span></a>
+            <ul class="nav nav-pills mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#chiassoNewsVideo">Chiasso News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ultimi caricamenti</a>
+                    <a class="nav-link" href="#categories-container">Serie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Serie</a>
+                    <a class="nav-link" href="#ultimi-caricamenti">Ultimi caricamenti</a>
                 </li>
             </ul>
         </div>

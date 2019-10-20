@@ -10,6 +10,17 @@ class CategoriesModel
         return self::parseCategories($result);
     }
 
+    public static function getNCategories($n_categories): array
+    {
+        $result = DB::query("SELECT * FROM category LIMIT %d", $n_categories);
+        return self::parseCategories($result);
+    }
+
+    public static function countCategories(): int{
+        DB::query("SELECT * FROM category");
+        return DB::count();
+    }
+
     public static function getCategory(int $id): Category
     {
         $result = DB::query("SELECT * FROM category WHERE id=%d", $id);
