@@ -1,13 +1,15 @@
-<!-- TODO: ADD LOADING SCREEN -->
-
 <main class="d-none">
-    <div id="titleSpacer" style="height: 10vh;"></div>
+
+    <!-- Spacer -->
+    <div class="title-spacer"></div>
+
     <div id="categories-container" class="container-fluid">
         <div class="row">
             <?php if (count($episodes) > 0): ?>
                 <div class="col-md-3">
                     <a href="/serie">
-                        <button class="btn btn-red"><i class="fas fa-arrow-left"></i> Torna alla lista</button>
+                        <!-- Back button -->
+                        <button class="btn btn-red back-button"><i class="fas fa-arrow-left"></i> Torna alla lista</button>
                     </a>
                 </div>
             <?php endif; ?>
@@ -38,7 +40,7 @@
                                     <img src="<?php echo sprintf(YOUTUBE_THUMBNAIL_LINK_BASE, $episode->getLink()); ?>"
                                          class="card-img-top"
                                          alt="'<?php echo $episode->getTitle(); ?>' episoode image">
-                                    <a href="/episodio/<?php echo $episode->getEpisodeIdentifierNumber();?>">
+                                    <a href="/episodio/player/<?php echo $episode->getEpisodeIdentifierNumber();?>">
                                         <div class="mask flex-center rgba-black-strong">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -62,10 +64,11 @@
                                     <!--Title-->
                                     <h4 class="card-title"><?php echo $episode->getTitle(); ?></h4>
 
-                                    <!--Text-->
+                                    <!-- Descrizione
                                     <p class="card-text">
                                         Descrizione. ( Da aggiungere o no??? )
                                     </p>
+                                    -->
                                 </div>
                             </div>
                             <!--/.Card-->

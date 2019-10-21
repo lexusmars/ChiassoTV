@@ -26,6 +26,12 @@ class EpisodeModel
         );
     }
 
+    public static function getEpisodeById($episode_id): Episode{
+        return self::parseEpisodes(DB::query(
+            "SELECT * FROM episode WHERE episode_number = %d LIMIT 1", $episode_id
+        ))[0];
+    }
+
     /* API METHODS */
     public static function delete(int $episode_id, $category_id): bool {
         return DB::delete("episode","episode_number=%d AND category_id=%d", $episode_id, $category_id);

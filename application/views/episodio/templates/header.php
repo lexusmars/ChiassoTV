@@ -27,41 +27,13 @@
 </head>
 <style>
 
-    .top-nav-collapse {
-        background-color: #4285F4;
-    }
-
-    .card-img-top {
-        width: 100%;
-        height: 15vw;
-        object-fit: cover;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .card-img-top {
-            width: 100%;
-            height: 30vh;
-            object-fit: cover;
-        }
-    }
 
     .nav-link{
-        color: white !important;
+        color: black;
     }
-
-    .top-nav-collapse .nav-link{
-        color: black !important;
-        background-color: #4285F4;
-    }
-
-    .nav-link.active{
-        color: white !important;
-        font-weight: bolder;
-    }
-
 </style>
 
-<body class="grey lighten-3" data-spy="scroll" data-target="#chiassoTvNavbar" data-offset="0">
+<body class="grey lighten-3">
 
 <!--Main Navigation-->
 <header class="d-none">
@@ -75,13 +47,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav nav-pills mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#chiassoNewsVideo">Chiasso News</a>
+                    <a class="nav-link" href="/">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#categories-container">Serie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#ultimi-caricamenti">Ultimi caricamenti</a>
+                    <a class="nav-link" href="/serie">Serie</a>
                 </li>
             </ul>
         </div>

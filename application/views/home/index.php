@@ -5,7 +5,10 @@
     <!-- Chiasso News -->
     <div class="container-fluid p-0">
         <div id="chiassoNewsVideo" class="w-100 p-4" style="background-image: url('/application/assets/img/map/sottoceneri-map-black.jpg'); background-size: contain">
-            <div id="titleSpacer" style="height: 10vh;"></div>
+
+            <!-- Spacer -->
+            <div class="title-spacer" style="height: 10vh;"></div>
+
             <h1 class="card-title h1-responsive pt-3 mb-5 font-bold text-center"><strong>
                     <span style="color: rgb(21,101,192)">Chiasso</span>
                     <span class="font-weight-bold" style="color: rgba(198,40,40, 0.8)">News</span>
@@ -27,7 +30,7 @@
         </div>
 
         <!-- Categories container -->
-        <div class="p-5 wow fadeInLeft">
+        <div class="p-3 wow fadeInLeft">
             <!-- Container -->
             <div class="row text-center">
 

@@ -1,5 +1,7 @@
 <main class="d-none">
-    <div id="titleSpacer" style="height: 10vh;"></div>
+    <!-- Spacer -->
+    <div class="title-spacer"></div>
+
     <div id="condizioni-container" class="container-fluid">
         <!-- condizioni generali -->
         <div class="row" id="condizioni-di-utilizzo">

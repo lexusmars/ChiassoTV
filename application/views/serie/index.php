@@ -1,7 +1,8 @@
-<!-- TODO: ADD LOADING SCREEN -->
-
 <main class="d-none">
-    <div id="titleSpacer" style="height: 10vh;"></div>
+
+    <!-- Spacer -->
+    <div class="title-spacer"></div>
+
     <div id="categories-container" class="container-fluid">
         <div class="row">
             <div class="col-md-12 mt-5 mb-3">
@@ -11,7 +12,7 @@
         </div>
 
         <!-- Categories container -->
-        <div class="p-5 wow fadeInLeft">
+        <div class="p-3 wow fadeInLeft">
             <!-- Container -->
             <div class="row text-center">
 
