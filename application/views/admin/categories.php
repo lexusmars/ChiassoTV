@@ -107,7 +107,7 @@
                                 <tbody>
                                 <?php foreach ($categories as $category): ?>
                                     <tr>
-                                        <td scope="row"><?php echo $category->getCategoryId() + 1; ?></td>
+                                        <td scope="row"><?php echo $category->getCategoryId(); ?></td>
                                         <td id="categoryName<?php echo $category->getCategoryId(); ?>"><?php echo $category->getCategoryName(); ?></td>
                                         <td><?php echo "0" ?></td>
                                         <td id="categoryDescription<?php echo $category->getCategoryId(); ?>"><?php echo $category->getCategoryDescription(); ?></td>

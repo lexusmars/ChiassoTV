@@ -58,7 +58,22 @@
         <!-- Collapsible element -->
         <div class="collapse d-none" id="collapseVideoInfos">
             <div class="mt-3">
-                <?php echo var_dump($episode); ?>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="h4-responsive">Data caricamento:</h4>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="h4-responsive"><?php echo date("d/m/Y H:i", strtotime($episode->getCreationDatetime()));?></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="h4-responsive">Serie:</h4>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="h4-responsive"><?php echo $episode->getCategory()->getCategoryName();?></h4>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- / Collapsible element -->

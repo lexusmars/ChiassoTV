@@ -1,7 +1,6 @@
 <!-- TODO: ADD LOADING SCREEN -->
 
 <main class="d-none">
-
     <!-- Chiasso News -->
     <div class="container-fluid p-0">
         <div id="chiassoNewsVideo" class="w-100 p-4" style="background-image: url('/application/assets/img/map/sottoceneri-map-black.jpg'); background-size: contain">
@@ -15,7 +14,7 @@
                 </strong></h1>
             <div class="row justify-content-center">
                 <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 50rem;">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/phoY2ovC7Ks?autoplay=1"
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $chiasso_news_episode->getLink();?>?&autoplay=1"
                             frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>

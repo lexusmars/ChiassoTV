@@ -32,6 +32,12 @@ class EpisodeModel
         ))[0];
     }
 
+    public static function getLatestEpisodeFromCategory(int $category_id): Episode{
+        return self::parseEpisodes(
+            DB::query("SELECT * FROM episode WHERE category_id = %d ORDER BY created_on DESC LIMIT 1", $category_id)
+        )[0];
+    }
+
     /* API METHODS */
     public static function delete(int $episode_id, $category_id): bool {
         return DB::delete("episode","episode_number=%d AND category_id=%d", $episode_id, $category_id);
