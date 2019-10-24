@@ -38,6 +38,11 @@ class EpisodeModel
         )[0];
     }
 
+    public static function countEpisodesFromCategory(int $category_id): int{
+        DB::query("SELECT * FROM episode WHERE category_id = %d", $category_id);
+        return DB::count();
+    }
+
     /* API METHODS */
     public static function delete(int $episode_id, $category_id): bool {
         return DB::delete("episode","episode_number=%d AND category_id=%d", $episode_id, $category_id);

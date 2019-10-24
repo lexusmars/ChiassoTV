@@ -66,11 +66,11 @@
 
 </style>
 
-<body class="grey lighten-3" data-spy="scroll" data-target="#chiassoTvNavbar" data-offset="0">
+<body class="grey lighten-3">
 
 <!--Main Navigation-->
 <header class="d-none">
-    <nav id="chiassoTvNavbar" class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar fixed-bottom">
+    <nav id="chiassoTvNavbar" class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">
         <a class="navbar-brand" href="/">
             <img src="/application/assets/img/logo/logo.png" height="40" alt="ChiassoTV logo">
         </a>
@@ -80,13 +80,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav nav-pills mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#condizioni-di-utilizzo">Condizioni di utilizzo</a>
+                    <a class="nav-link" href="#condizioni-di-utilizzo">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#nota-legale">Nota legale</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#copyright">Copyright</a>
+                    <a class="nav-link active" href="#nota-legale">Contatti</a>
                 </li>
             </ul>
         </div>

@@ -12,7 +12,7 @@ class Api
     // admin/category/delete/<index>
     // admin/category/add
     // api/category/update/<index>
-    public function category($action, $index=null){
+    public function category($action=null, $index=null){
         if(Auth::isAuthenticated()){
             $GLOBALS["NOTIFIER"]->clear();
             if($action=="delete" && !is_null($index)){
@@ -42,11 +42,11 @@ class Api
             Application::redirect("admin/categories");
         }
         else{
-            Application::redirect("admin");
+            Application::redirect("");
         }
     }
 
-    public function episode($action, $category=null, $episode=null){
+    public function episode($action=null, $category=null, $episode=null){
         if(Auth::isAuthenticated()){
             $GLOBALS["NOTIFIER"]->clear();
             if($action=="delete" && !is_null($category) && !is_null($episode)){
@@ -86,7 +86,32 @@ class Api
             Application::redirect("admin/episodes");
         }
         else{
-            Application::redirect("admin/episodes");
+            Application::redirect("");
         }
     }
+
+    public function image($action=null, $image_type=null){
+        if(Auth::isAuthenticated()){
+            if($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST" &&
+                isset($_FILES["category_image_upload"])){
+
+                var_dump($_FILES);
+
+                // Setup final path
+                $result = ImageModel::uploadFile($_FILES["category_image_upload"], CATEGORIES_IMG_PATH);
+
+                if(is_string($result)){
+                    $GLOBALS["NOTIFIER"]->add($result);
+                }
+            }
+            Application::redirect("admin/categories");
+        }
+        else{
+            Application::redirect("");
+        }
+    }
+}
+
+abstract class ImageApi{
+    public const UPLOAD_ACTION = "upload";
 }

@@ -82,6 +82,34 @@
             </div>
         </div>
 
+        <div class="row wow fadeIn">
+            <div class="col-md-12">
+                <br>
+                <div class="card" id="aggiungi-categoria">
+                    <div class="card-header"><h3 class="h3-responsive">Aggiungi categoria</h3></div>
+                    <div class="card-body">
+                        <!-- Upload image -->
+                        <form class="form" method="post" action="/api/image/upload" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="category_image_upload" id="categoryImageUploadInput"
+                                           aria-describedby="categoryImageUploadInput" accept="image/*">
+                                    <label class="custom-file-label" for="categoryImageUploadInput">Scegli immagine</label>
+                                </div>
+                            </div>
+                            <!-- Add category button -->
+                            <button class="btn btn-cyan btn-block my-4" type="submit">Carica immagine</button>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <br>
         <!--Grid row-->
         <div class="row wow fadeIn">
@@ -109,7 +137,7 @@
                                     <tr>
                                         <td scope="row"><?php echo $category->getCategoryId(); ?></td>
                                         <td id="categoryName<?php echo $category->getCategoryId(); ?>"><?php echo $category->getCategoryName(); ?></td>
-                                        <td><?php echo "0" ?></td>
+                                        <td><?php echo EpisodeModel::countEpisodesFromCategory($category->getCategoryId()) ?></td>
                                         <td id="categoryDescription<?php echo $category->getCategoryId(); ?>"><?php echo $category->getCategoryDescription(); ?></td>
                                         <td id="categoryPath<?php echo $category->getCategoryId(); ?>"><?php echo $category->getCategoryImagePath(); ?></td>
                                         <td><?php echo $category->getCategoryCreationDate(); ?></td>

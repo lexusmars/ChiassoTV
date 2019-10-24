@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 define('URL', 'http://localhost:8123/');
 define('DIR', 'C:/Users/luca6/Google Drive/Repo/ChiassoTV/');
 
-define('CATEGORIES_IMG_PATH', DIR . '/application/assets/img/categories/');
+define('CATEGORIES_IMG_PATH', DIR . 'application/assets/img/categories/');
 
 define('CATEGORIES_IMG_LINK','/application/assets/img/categories/');
 define('DEFAULT_CATEGORY_IMG', "not_found.jpg");
