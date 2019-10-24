@@ -86,7 +86,7 @@
             <div class="col-md-12">
                 <br>
                 <div class="card" id="aggiungi-categoria">
-                    <div class="card-header"><h3 class="h3-responsive">Aggiungi categoria</h3></div>
+                    <div class="card-header"><h3 class="h3-responsive">Carica immagine di copertina</h3></div>
                     <div class="card-body">
                         <!-- Upload image -->
                         <form class="form" method="post" action="/api/image/upload" enctype="multipart/form-data">
