@@ -22,8 +22,6 @@
                 <h1 class="h1-responsive font-weight-bold">Luca Di Bello, Web Master</h1>
                 <h4 class="h4-responsive"><a href="mailto:luca6469@gmail.com">luca6469@gmail.com</a></h4>
                 <h4 class="h4-responsive"><a href="https://lucadibello.ch/">www.lucadibello.ch</a></h4>
-                <h4 class="h4-responsive">Lunedì - Venerdi (17:45 - 22:00)</h4>
-                <h4 class="h4-responsive">Sabato - Domenica (13:00 - 22:00)</h4>
             </div>
         </div>
 

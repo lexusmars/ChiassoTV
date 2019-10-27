@@ -41,14 +41,16 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Extra</h5>
+                <h5 class="text-uppercase">Altro</h5>
 
                 <ul class="list-unstyled">
                     <li>
                         <a href="/condizioni">Condizioni d'utilizzo</a>
                     </li>
+                    <li>
+                        <a href="/contatti">Contatti</a>
+                    </li>
                 </ul>
-
             </div>
             <!-- Grid column -->
 

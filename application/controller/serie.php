@@ -20,21 +20,31 @@ class Serie
         ViewLoader::load('_globals/footer');
     }
 
-    public function episodi($category_id){
+    public function episodi($category_id=null){
+
+        if(is_null($category_id)){
+            Application::redirect("serie");
+        }
+
         $episodes = EpisodeModel::getCategoryEpisodesById($category_id);
-        $category_name = CategoriesModel::getCategory($category_id)->getCategoryName();
+        $category= CategoriesModel::getCategory($category_id);
 
-        ViewLoader::load('serie/templates/header');
+        if(!is_null($category)){
+            ViewLoader::load('serie/templates/header');
 
-        //ViewLoader::load('_globals/loading_screen');
+            //ViewLoader::load('_globals/loading_screen');
 
-        ViewLoader::load('serie/episodi', array(
-            "episodes" => $episodes,
-            "category_name" => $category_name
-        ));
+            ViewLoader::load('serie/episodi', array(
+                "episodes" => $episodes,
+                "category_name" => $category->getCategoryName(),
+            ));
 
-        ViewLoader::load("_globals/loading_handler");
+            ViewLoader::load("_globals/loading_handler");
 
-        ViewLoader::load('_globals/footer');
+            ViewLoader::load('_globals/footer');
+        }
+        else{
+            ViewLoader::load("templates/404");
+        }
     }
 }

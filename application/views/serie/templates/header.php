@@ -10,7 +10,7 @@
     <meta name="keywords" content="Home page,Web TV,Chiasso, Ticino, Switzerland,ChiassoTV">
     <meta name="author" content="Luca Di Bello,Giacomo Morandi Editore Switzerland">
 
-    <title><?php echo APP_NAME ?> - la web tv ticinese</title>
+    <title><?php echo APP_NAME ?> - la web tv Ticinese</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -19,8 +19,6 @@
     <link href="/application/assets/css/mdb.min.css" rel="stylesheet">
     <!-- JQuery -->
     <script type="text/javascript" src="/application/assets/js/jquery-3.4.1.min.js"></script>
-    <!-- Swiper.js style -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <!-- Personal stylesheet -->
     <link rel="stylesheet" href="/application/assets/css/style.css">
 
@@ -94,6 +92,9 @@
                     <a class="nav-link active" href="/serie">Serie</a>
                 </li>
             </ul>
+            <span class="nav-item">
+                <a class="nav-link" href="/contatti">Contatti</a>
+            </span>
         </div>
     </nav>
 </header>

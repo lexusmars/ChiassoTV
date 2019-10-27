@@ -9,8 +9,9 @@
     <meta name="description" content="ChiassoTV home page">
     <meta name="keywords" content="Home page,Web TV,Chiasso, Ticino, Switzerland,ChiassoTV">
     <meta name="author" content="Luca Di Bello,Giacomo Morandi Editore Switzerland">
+    <link rel="shortcut icon" href="http://example.com/favicon.ico" />
 
-    <title><?php echo APP_NAME ?> - la web tv ticinese</title>
+    <title><?php echo APP_NAME ?> - la web tv Ticinese</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -19,11 +20,8 @@
     <link href="/application/assets/css/mdb.min.css" rel="stylesheet">
     <!-- JQuery -->
     <script type="text/javascript" src="/application/assets/js/jquery-3.4.1.min.js"></script>
-    <!-- Swiper.js style -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <!-- Personal stylesheet -->
     <link rel="stylesheet" href="/application/assets/css/style.css">
-
 </head>
 <style>
 
@@ -80,10 +78,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav nav-pills mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#condizioni-di-utilizzo">Homepage</a>
+                    <a class="nav-link" href="/home">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#nota-legale">Contatti</a>
+                    <a class="nav-link active">Contatti</a>
                 </li>
             </ul>
         </div>

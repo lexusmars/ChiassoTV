@@ -17,17 +17,22 @@ class Episodio
         if(!is_null($episode_id)){
             $episode = EpisodeModel::getEpisodeById($episode_id);
 
-            ViewLoader::load('episodio/templates/header');
+            if(is_null($episode)){
+                ViewLoader::load("templates/404");
+            }
+            else{
+                ViewLoader::load('episodio/templates/header');
 
-            ViewLoader::load('_globals/loading_screen');
+                ViewLoader::load('_globals/loading_screen');
 
-            ViewLoader::load('episodio/index', array(
-                "episode" => $episode,
-            ));
+                ViewLoader::load('episodio/index', array(
+                    "episode" => $episode,
+                ));
 
-            ViewLoader::load("_globals/loading_handler");
+                ViewLoader::load("_globals/loading_handler");
 
-            ViewLoader::load('_globals/footer');
+                ViewLoader::load('_globals/footer');
+            }
         }
         else{
             // Id is null, redirect to homepage

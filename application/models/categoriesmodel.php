@@ -21,10 +21,15 @@ class CategoriesModel
         return DB::count();
     }
 
-    public static function getCategory(int $id): Category
+    public static function getCategory(int $id)
     {
         $result = DB::query("SELECT * FROM category WHERE id=%d", $id);
-        return self::parseCategories($result)[0];
+        if(count($result) == 0){
+            return null;
+        }
+        else{
+            return self::parseCategories($result)[0];
+        }
     }
 
     public static function delete(int $id): bool {
@@ -63,7 +68,6 @@ class CategoriesModel
             return self::$validation_errors;
         }
     }
-
 
     private static function validate(array $data): bool {
         if(!isset($data["categoryName"]) && !isset($data["categoryDescription"]) && !isset($data["categoryImagePath"])){
