@@ -40,7 +40,7 @@
     <style>
         .al-404 {
             background-attachment: fixed;
-            background-image: linear-gradient( rgba(22, 0, 10, .2), rgba(252, 68, 69, .3)), url('https://source.unsplash.com/1024x768/?thunderstorm');
+            background-image: linear-gradient( rgba(22, 0, 10, .2), rgba(252, 68, 69, .3)), url('/application/assets/img/404/background.jpg');
             background-position: center bottom;
             background-size: cover;
             font-family: 'Poppins', sans-serif;
