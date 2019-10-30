@@ -60,7 +60,7 @@
             <div class="mt-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <h4 class="h4-responsive">Data caricamento:</h4>
+                        <h4 class="h4-responsive font-weight-bold">Data caricamento:</h4>
                     </div>
                     <div class="col-md-3">
                         <h4 class="h4-responsive"><?php echo date("d/m/Y H:i", strtotime($episode->getCreationDatetime()));?></h4>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <h4 class="h4-responsive">Serie:</h4>
+                        <h4 class="h4-responsive font-weight-bold">Serie:</h4>
                     </div>
                     <div class="col-md-3">
                         <h4 class="h4-responsive"><?php echo $episode->getCategory()->getCategoryName();?></h4>

@@ -3,7 +3,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="La pagina che stai cercando non esiste su ChiassoTV.">
+    <meta name="keywords" content="404,Web TV,Chiasso, Ticino, Switzerland,ChiassoTV">
+    <meta name="author" content="Luca Di Bello,Giacomo Morandi Editore Switzerland">
+
     <title><?php echo APP_NAME ?> - la web tv Ticinese</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/application/assets/img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/application/assets/img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/application/assets/img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/application/assets/img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/application/assets/img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/application/assets/img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/application/assets/img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/application/assets/img/favicon/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="404 not found"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/application/assets/img/favicon/mstile-144x144.png" />
 
     <!-- Bootstrap core CSS -->
     <link href="/application/assets/css/bootstrap.min.css" rel="stylesheet">

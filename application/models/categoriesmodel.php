@@ -103,7 +103,6 @@ class CategoriesModel
                 $row["id"],
                 $row["name"],
                 $row["description"],
-                "WORK_IN_PROGRESS",
                 $row["created_at"],
                 $row["last_edit_at"],
                 $row["img_path"]

@@ -8,9 +8,23 @@
 
     <meta name="description" content="ChiassoTV admin panel">
     <meta name="keywords" content="Management,Admin,Admin panel,ChiassoTV">
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Luca Di Bello">
 
     <title><?php echo APP_NAME ?> - Pannello Admin</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/application/assets/img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/application/assets/img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/application/assets/img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/application/assets/img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/application/assets/img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/application/assets/img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/application/assets/img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/application/assets/img/favicon/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="Pannello admin per la gestione di ChiassoTV"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/application/assets/img/favicon/mstile-144x144.png" />
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->

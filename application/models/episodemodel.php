@@ -32,10 +32,15 @@ class EpisodeModel
         ))[0];
     }
 
-    public static function getLatestEpisodeFromCategory(int $category_id): Episode{
-        return self::parseEpisodes(
-            DB::query("SELECT * FROM episode WHERE category_id = %d ORDER BY created_on DESC LIMIT 1", $category_id)
-        )[0];
+    public static function getLatestEpisodeFromCategory(int $category_id){
+        $result = DB::query("SELECT * FROM episode WHERE category_id = %d ORDER BY created_on DESC LIMIT 1", $category_id);
+
+        if(count($result) != 0){
+            return self::parseEpisodes($result)[0];
+        }
+        else{
+            return null;
+        }
     }
 
     public static function countEpisodesFromCategory(int $category_id): int{
@@ -86,18 +91,6 @@ class EpisodeModel
         }
     }
 
-    /*
-     * TODO: FINISH THESE METHODS
-    public static function countEpisodes(){
-
-        return
-    }
-
-    public static function countCategoryEpisodes(){
-
-    }
-    */
-
     private static function parseEpisodes($data){
         $episodes = [];
 
@@ -115,7 +108,6 @@ class EpisodeModel
 
         return $episodes;
     }
-
 
     private static function validate(array $data): bool{
         self::$errors = [];

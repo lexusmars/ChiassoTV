@@ -12,11 +12,17 @@
                     <span class="font-weight-bold" style="color: rgba(198,40,40, 0.8)">News</span>
                 </strong></h1>
             <div class="row justify-content-center">
-                <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 50rem;">
-                    <iframe class="embed-responsive-item"
-                            src="https://www.youtube.com/embed/<?php echo $chiasso_news_episode->getLink(); ?>?&autoplay=1"
-                            frameborder="0" allowfullscreen></iframe>
-                </div>
+                <?php if(isset($chiasso_news_episode)): ?>
+                    <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 50rem;">
+                        <iframe class="embed-responsive-item"
+                                src="https://www.youtube.com/embed/<?php echo $chiasso_news_episode->getLink(); ?>?&autoplay=1"
+                                frameborder="0" allowfullscreen></iframe>
+                    </div>
+                <?php else: ?>
+                    <div class="col-md-12 text-center text-white">
+                        <h1 class="h1-responsive"><i class="fas fa-exclamation-triangle"></i> Al momento non c'è nessun episodio di Chiasso News da visualizzare.</h1>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -91,6 +97,7 @@
         <!-- Categories container -->
     </div>
 
+    <?php if(count($newest_episodes) > 0): ?>
     <div class="container-fluid wow slideInLeft" id="ultimi-caricamenti">
         <div class="row">
             <div class="col-md-12 mt-5">
@@ -107,7 +114,7 @@
     <div class="container-fluid">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <?php foreach (EpisodeModel::getNewestVideos(N_NEWEST_VIDEOS_HOMEPAGE) as $episode): ?>
+                <?php foreach ($newest_episodes as $episode): ?>
                     <div class="swiper-slide">
                         <!--Zoom effect-->
                         <div class="view overlay">
@@ -141,11 +148,11 @@
             <div class="swiper-button-prev text-danger font-weight-bold"></div>
         </div>
     </div>
+    <?php endif; ?>
 </main>
 
 <script src="/application/assets/js/addons/swiper.min.js"></script>
 <script>
-
     $(document).ready(function () {
         //initialize swiper when document ready
         var swiper = new Swiper('.swiper-container', {
