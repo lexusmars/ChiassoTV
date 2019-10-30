@@ -17,6 +17,7 @@ session_start();
 DB::$user = DATABASE_USERNAME;
 DB::$password = DATABASE_PASSWORD;
 DB::$dbName = DATABASE_NAME;
+DB::$host = DATABASE_HOST;
 
 $GLOBALS["NOTIFIER"] = new Notifier();
 

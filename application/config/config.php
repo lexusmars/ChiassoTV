@@ -27,3 +27,4 @@ define('APP_NAME','ChiassoTV');
 define("DATABASE_USERNAME", "root");
 define("DATABASE_PASSWORD", "");
 define("DATABASE_NAME", "chiassotv");
+define("DATABASE_HOST", "localhost");
