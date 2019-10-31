@@ -26,10 +26,15 @@ class EpisodeModel
         );
     }
 
-    public static function getEpisodeById($episode_id): Episode{
-        return self::parseEpisodes(DB::query(
-            "SELECT * FROM episode WHERE episode_number = %d LIMIT 1", $episode_id
-        ))[0];
+    public static function getEpisodeById($episode_id){
+        $result = DB::query("SELECT * FROM episode WHERE episode_number = %d LIMIT 1", $episode_id);
+
+        if(count($result) > 0){
+            return self::parseEpisodes($result)[0];
+        }
+        else{
+            return null;
+        }
     }
 
     public static function getLatestEpisodeFromCategory(int $category_id){
