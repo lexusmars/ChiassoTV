@@ -16,7 +16,7 @@ define('YOUTUBE_EMBEDDED_VIDEOS_LINK_BASE', "https://www.youtube.com/embed/");
 define('YOUTUBE_THUMBNAIL_LINK_BASE', "https://img.youtube.com/vi/%s/mqdefault.jpg");
 
 /* TODO: CHECK NAME */
-define('CHIASSO_NEWS_CATEGORY_ID', "31");
+define('CHIASSO_NEWS_CATEGORY_ID', "1");
 
 $autoload_directories = array(
     "application/libs/",
@@ -28,3 +28,6 @@ define("DATABASE_USERNAME", "root");
 define("DATABASE_PASSWORD", "");
 define("DATABASE_NAME", "chiassotv");
 define("DATABASE_HOST", "localhost");
+
+/* MAINTENANCE FLAG */
+define("MAINTENANCE", true);

@@ -10,7 +10,17 @@ class Application
 
     public function __construct()
     {
+
+
         $this->splitUrl(); //funzione da creare per dividere l'URL
+
+        /* Maintenance check -> only admins can access the website */
+        if(MAINTENANCE && $this->url_controller != "admin" && !Auth::isAuthenticated()){
+            ViewLoader::load("manutenzione/templates/header");
+            ViewLoader::load("manutenzione/index");
+            ViewLoader::load("_globals/footer");
+            exit;
+        }
 
         // Check for 'robots.txt'
         if($this->url_controller == "robots.txt"){
