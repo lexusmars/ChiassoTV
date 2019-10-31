@@ -11,6 +11,14 @@ class Application
     public function __construct()
     {
         $this->splitUrl(); //funzione da creare per dividere l'URL
+
+        // Check for 'robots.txt'
+        if($this->url_controller == "robots.txt"){
+            ViewLoader::loadFile("crawlers/robots.txt");
+            exit;
+        }
+
+
         if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
             require './application/controller/' . $this->url_controller . '.php';
             $this->url_controller = new $this->url_controller();

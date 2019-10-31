@@ -21,8 +21,10 @@
 
 
         <div class="row justify-content-center p-3">
-            <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 120vh;">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $episode->getLink()?>?autoplay=1"
+            <div class="embed-responsive embed-responsive-16by9" style="max-width: 120vh;">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $episode->getLink();?>?autoplay=1"
+                        title="<?php echo $episode->getTitle(); ?>"
+                        aria-hidden="true"
                         frameborder="0" allowfullscreen></iframe>
             </div>
         </div>

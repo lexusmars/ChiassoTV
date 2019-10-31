@@ -15,6 +15,8 @@
                 <?php if(isset($chiasso_news_episode)): ?>
                     <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 50rem;">
                         <iframe class="embed-responsive-item"
+                                title="<?php echo $chiasso_news_episode->getTitle(); ?>"
+                                aria-hidden="true"
                                 src="https://www.youtube.com/embed/<?php echo $chiasso_news_episode->getLink(); ?>?&autoplay=1"
                                 frameborder="0" allowfullscreen></iframe>
                     </div>

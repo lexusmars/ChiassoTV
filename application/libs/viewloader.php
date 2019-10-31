@@ -11,4 +11,9 @@ class ViewLoader
         }
         require_once DIR . "application/views/". $template . '.php';
     }
+
+    public static function loadFile($path){
+        header('Content-Type: text/plain');
+        echo file_get_contents( DIR . "application/" . $path);
+    }
 }
