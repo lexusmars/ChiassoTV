@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+
     <div id="categories-container" class="container-fluid">
         <div class="row">
             <div class="col-md-12 mt-5 mb-3">
@@ -97,6 +98,17 @@
             <!-- Container -->
         </div>
         <!-- Categories container -->
+    </div>
+
+    <div id="partner-container" class="container-fluid purple-background" style="background-color: #5252d4;">
+        <div class="row p-5 mask d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <h1 class="h1-responsive text-white">Official partner of <a href="https://momohill.com/" target="_blank" rel="noreferrer">Momohill Film Fair Switzerland</a></h1>
+            </div>
+            <div class="col-md-4">
+                <img src="/application/assets/img/partners/momohill.jpg" class="img-fluid" alt="Momohill Film Fair Switzerland logo">
+            </div>
+        </div>
     </div>
 
     <?php if(count($newest_episodes) > 0): ?>

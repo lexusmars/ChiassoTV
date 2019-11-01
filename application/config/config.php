@@ -30,4 +30,5 @@ define("DATABASE_NAME", "chiassotv");
 define("DATABASE_HOST", "localhost");
 
 /* MAINTENANCE FLAG */
-define("MAINTENANCE", true);
+//TODO: ADD THIS OPTION IN ADMIN PANEL
+define("MAINTENANCE", false);
