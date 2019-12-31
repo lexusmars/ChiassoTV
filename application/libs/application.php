@@ -14,6 +14,17 @@ class Application
 
         $this->splitUrl(); //funzione da creare per dividere l'URL
 
+        // Check for 'robots.txt'
+        if($this->url_controller == "robots.txt"){
+            ViewLoader::loadFile(ROBOTS_PATH, ViewLoader::CONTENT_TYPE_TEXT);
+            exit;
+        }
+        elseif($this->url_controller == "sitemap.xml"){
+            ViewLoader::loadFile("crawlers/sitemap.xml", ViewLoader::CONTENT_TYPE_XML);
+            exit();
+        }
+
+
         /* Maintenance check -> only admins can access the website */
         if(MAINTENANCE && $this->url_controller != "admin" && !Auth::isAuthenticated()){
             ViewLoader::load("manutenzione/templates/header");
@@ -21,13 +32,6 @@ class Application
             ViewLoader::load("_globals/footer");
             exit;
         }
-
-        // Check for 'robots.txt'
-        if($this->url_controller == "robots.txt"){
-            ViewLoader::loadFile("crawlers/robots.txt");
-            exit;
-        }
-
 
         if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
             require './application/controller/' . $this->url_controller . '.php';

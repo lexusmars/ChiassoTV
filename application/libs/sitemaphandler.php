@@ -8,7 +8,7 @@
 
 class SitemapHandler
 {
-    /* EDIT FREQUENCY */
+    /* EDIT FREQUENCIES */
     public const FREQ_ALWAYS = "always";
     public const FREQ_HOURLY = "hourly";
     public const FREQ_DAILY = "daily";
@@ -64,7 +64,7 @@ class SitemapHandler
         }
     }
 
-    /* Add link process */
+    /* Add link in sitemap */
     public function addLink($link, $last_mod, $priority=0.5, $change_frequence=SitemapHandler::FREQ_MONTHLY){
         libxml_use_internal_errors(true);
 
@@ -93,7 +93,7 @@ class SitemapHandler
         }
 
         // Append url node to root element
-        $root->appendChild($this->create_url_node($link, $last_mod, $priority, $change_frequence));
+        $root->appendChild($this->_create_url_node($link, $last_mod, $priority, $change_frequence));
 
         // Append root node to main document
         $this->xml->appendChild($root);
@@ -102,7 +102,27 @@ class SitemapHandler
         $this->xml->save($this->sitemap_path);
     }
 
-    private function create_url_node($link, $last_mod, $priority=0.5, $change_frequence=SitemapHandler::FREQ_MONTHLY){
+    /* Remove url node using loc link */
+    public function removeLink($link){
+        // load document
+        $this->xml->load($this->sitemap_path);
+
+        // Iterate all nodes to check with one has the link
+        $nodes = $this->xml->getElementsByTagName(SitemapHandler::LINK_ELEMENT);
+
+        foreach ($nodes as $link_node){
+            if(trim($link_node->textContent)== $link){
+                // Link found, remove url node from main node
+                $main_node = $this->xml->getElementsByTagName(SitemapHandler::ROOT_ELEMENT)->item(0);
+                $main_node->removeChild($link_node->parentNode);
+
+                // Apply edits
+                $this->xml->save($this->sitemap_path);
+            }
+        }
+    }
+
+    private function _create_url_node($link, $last_mod, $priority=0.5, $change_frequence=SitemapHandler::FREQ_MONTHLY){
         $url_node = $this->xml->createElement(SitemapHandler::URL_NODE);
 
         // Create elements
