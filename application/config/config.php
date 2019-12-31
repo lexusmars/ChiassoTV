@@ -2,10 +2,11 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-define('URL', 'http://localhost:8123/');
+define('URL', 'http://localhost:8080/');
 define('DIR', 'C:/Users/luca6/Google Drive/Repo/ChiassoTV/');
 
 define('CATEGORIES_IMG_PATH', DIR . 'application/assets/img/categories/');
+define('BANNERS_IMG_PATH', DIR . 'application/assets/img/banners/');
 
 define('CATEGORIES_IMG_LINK','/application/assets/img/categories/');
 define('DEFAULT_CATEGORY_IMG', "not_found.jpg");
@@ -32,3 +33,11 @@ define("DATABASE_HOST", "localhost");
 /* MAINTENANCE FLAG */
 //TODO: ADD THIS OPTION IN ADMIN PANEL
 define("MAINTENANCE", false);
+
+/* FOR CRAWLERS */
+define("ROBOTS_PATH", "crawlers/robots.txt");
+define("SITEMAP_PATH", DIR . "application/crawlers/sitemap.xml");
+
+/* FOR SITEMAP */
+define("EPISODE_LINK_FORMAT", URL . "episodio/player/%d");
+define("CATEGORY_LINK_FORMAT", URL . "serie/episodi/%d");

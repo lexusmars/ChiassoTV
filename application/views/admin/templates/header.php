@@ -95,6 +95,11 @@
                             Gestione episodi
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="<?php echo Application::buildUrl('admin/banner') ?>" target="_top">
+                            Gestione banner
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right -->

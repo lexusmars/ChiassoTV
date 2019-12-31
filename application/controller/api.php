@@ -19,6 +19,9 @@ class Api
                 if(!CategoriesModel::delete($index)){
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare la categoria.");
                 }
+                else{
+                    $GLOBALS["SITEMAP_HANDLER"]->removeLink(sprintf(CATEGORY_LINK_FORMAT, $index));
+                }
             }
             elseif($action == "add" && $_SERVER["REQUEST_METHOD"] == "POST"){
                 // Sanitize POST data and add record to database
@@ -27,6 +30,13 @@ class Api
                 // If it detects errors
                 if(is_array($result)){
                     $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+                else{
+                    $category_id = DB::insertId();
+                    $curr_date = new DateTime();
+
+                    $GLOBALS["SITEMAP_HANDLER"]->addLink(sprintf(CATEGORY_LINK_FORMAT, $category_id),
+                        $curr_date->format("Y-m-d"));
                 }
             }
             elseif($action == "update" && !is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -53,6 +63,10 @@ class Api
                 if(!EpisodeModel::delete($episode, $category)){
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare la categoria.");
                 }
+                else{
+                    // Remove link from sitemap
+                    $GLOBALS["SITEMAP_HANDLER"]->removeLink(sprintf(EPISODE_LINK_FORMAT, $episode));
+                }
                 Application::redirect("admin/episodes/$category");
             }
 
@@ -64,6 +78,13 @@ class Api
                 // If it detects errors
                 if(is_array($result)){
                     $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+                else{
+                    $video_id = DB::insertId();
+                    $curr_date = new DateTime();
+
+                    $GLOBALS["SITEMAP_HANDLER"]->addLink(sprintf(EPISODE_LINK_FORMAT, $video_id),
+                        $curr_date->format("Y-m-d"));
                 }
 
                 Application::redirect("admin/episodes/$category");
@@ -92,10 +113,21 @@ class Api
 
     public function image($action=null, $image_type=null){
         if(Auth::isAuthenticated()){
-            if($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST" &&
-                isset($_FILES["category_image_upload"])){
+            // Upload banner image
+            if($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST"
+                && $image_type==ImageApi::IMAGE_BANNER && isset($_FILES["category_image_upload"])){
 
-                var_dump($_FILES);
+                // Upload image to server
+                $result = ImageModel::uploadFile($_FILES["category_image_upload"], BANNERS_IMG_PATH);
+
+                if(is_string($result)){
+                    $GLOBALS["NOTIFIER"]->add($result);
+                }
+                Application::redirect("admin/banner");
+            }
+            // Upload category image
+            elseif($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST" &&
+                isset($_FILES["category_image_upload"])){
 
                 // Setup final path
                 $result = ImageModel::uploadFile($_FILES["category_image_upload"], CATEGORIES_IMG_PATH);
@@ -103,15 +135,21 @@ class Api
                 if(is_string($result)){
                     $GLOBALS["NOTIFIER"]->add($result);
                 }
+
+                Application::redirect("admin/categories");
             }
-            Application::redirect("admin/categories");
         }
         else{
             Application::redirect("");
         }
     }
+
+    public function banner($action=null, $index=null){
+
+    }
 }
 
 abstract class ImageApi{
     public const UPLOAD_ACTION = "upload";
+    public const IMAGE_BANNER = "banner";
 }

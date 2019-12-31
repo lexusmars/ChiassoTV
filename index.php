@@ -20,6 +20,7 @@ DB::$dbName = DATABASE_NAME;
 DB::$host = DATABASE_HOST;
 
 $GLOBALS["NOTIFIER"] = new Notifier();
+$GLOBALS["SITEMAP_HANDLER"] = new SitemapHandler(SITEMAP_PATH);
 
 // faccio partire l'applicazione
 $app = new Application();
