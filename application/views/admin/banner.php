@@ -11,7 +11,7 @@
                 <h4 class="mb-2 mb-sm-0 pt-1">
                     <span class="blue-text font-weight-bold">Admin Panel</span>
                     <span>/</span>
-                    <span>Gestione banners</span>
+                    <span>Gestione banner</span>
                 </h4>
             </div>
 
@@ -37,33 +37,50 @@
                             <?php $GLOBALS["NOTIFIER"]->clear(); ?>
                         <?php endif; ?>
 
-                        <form class="form" method="post" action="/api/category/add">
-
+                        <form class="form" method="post" action="/api/banner/add">
                             <!-- Category name -->
                             <div class="md-form">
-                                <input type="text" id="nomeCategoria" class="form-control" name="categoryName" required>
-                                <label for="nomeCategoria">Nome categoria<span class="red-text">*</span></label>
-                            </div>
-
-                            <!-- Category desciption -->
-                            <div class="md-form">
-                                <textarea id="descrizioneCategoria" name="categoryDescription"
-                                          class="form-control md-textarea" length="1024" rows="3"></textarea>
-
-                                <label for="descrizioneCategoria">Descrizione categoria</label>
+                                <input type="text" id="tipoBanner" class="form-control" name="bannerType" required>
+                                <label for="tipoBanner">Tipo di banner<span class="red-text">*</span></label>
                             </div>
 
                             <div class="md-form">
-                                <h4 class="h4-responsive">Immagine di categoria</h4>
-                                <select id="imageSelector" name="categoryImagePath" class="browser-default custom-select">
-                                    <?php foreach(CategoriesModel::getCategoryImages() as $imagePath):?>
-                                        <option value="<?php echo $imagePath?>"><?php echo basename($imagePath)?></option>
+                                <h4 class="h4-responsive">Cliente</h4>
+                                <select id="imageSelector" name="categoryImagePath"
+                                        class="browser-default custom-select">
+                                    <?php foreach (CategoriesModel::getCategoryImages() as $imagePath): ?>
+                                        <option value="<?php echo $imagePath ?>"><?php echo basename($imagePath) ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
 
+                            <!-- Image selector -->
+                            <div class="md-form">
+                                <?php if (count($banner_images) > 0): ?>
+                                <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <h4 class="h4-responsive">Immagine banner</h4>
+                                        <select id="bannerSelector" name="bannerImagePath"
+                                                class="browser-default custom-select">
+                                            <?php foreach ($banner_images as $imagePath): ?>
+                                                <option value="<?php echo basename($imagePath) ?>"><?php echo basename($imagePath) ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4  text-center">
+                                        <!-- banner image showcase-->
+                                        <img class="img-fluid img-thumbnail"  style="max-height: 30vh;" id="banner-thumbnail" src="" alt="Banner showcase image">
+                                    </div>
+                                </div>
+                                <?php else: ?>
+                                    <h6 class="text-center text-danger">Non ci sono immagini disponibili. Per creare dei
+                                        banner devi prima aggiungere le immagini tramite <a
+                                                href="#carica-immagine-banner" rel="noreferrer">questo</a> modulo</h6>
+                                <?php endif; ?>
+                            </div>
+
                             <!-- Add category button -->
-                            <button class="btn btn-success btn-block my-4" type="submit">Aggiungi categoria</button>
+                            <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi categoria</button>
                             <br>
                         </form>
                     </div>
@@ -75,23 +92,26 @@
         <div class="row wow fadeIn">
             <div class="col-md-12">
                 <br>
-                <div class="card" id="aggiungi-categoria">
+                <div class="card" id="carica-immagine-banner">
                     <div class="card-header"><h3 class="h3-responsive">Carica immagine banner</h3></div>
                     <div class="card-body">
                         <!-- Upload image -->
-                        <form class="form" method="post" action="/api/image/upload/banner" enctype="multipart/form-data">
+                        <form class="form" method="post" action="/api/image/upload/banner"
+                              enctype="multipart/form-data">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="category_image_upload" id="categoryImageUploadInput"
+                                    <input type="file" class="custom-file-input" name="category_image_upload"
+                                           id="categoryImageUploadInput"
                                            aria-describedby="categoryImageUploadInput" accept="image/*">
-                                    <label class="custom-file-label" for="categoryImageUploadInput">Scegli immagine</label>
+                                    <label class="custom-file-label" for="categoryImageUploadInput">Scegli immagine
+                                        banner</label>
                                 </div>
                             </div>
                             <!-- Add category button -->
-                            <button class="btn btn-cyan btn-block my-4" type="submit">Carica immagine</button>
+                            <button class="btn btn-cyan btn-block my-4" type="submit">Carica immagine banner</button>
                             <br>
                         </form>
                     </div>
@@ -101,13 +121,6 @@
         </div>
 
         <br>
-
-        <!-- banner table -->
-        <div class="row wow fadeIn">
-            <div class="col-md-12">
-                <p>yolo</p>
-            </div>
-        </div>
 
         <footer>
             <!--Copyright-->
@@ -131,6 +144,19 @@
     $(document).ready(function () {
         $("#categoriesTable").dataTable({
             responsive: true,
-        })
-    })
+        });
+
+        $("#bannerSelector").on("change",function () {
+            update_banner_thumbnail();
+        });
+    });
+
+    function update_banner_thumbnail(){
+        // Get image and generate link
+        let selected_filename = $("#bannerSelector").children("option:selected").val();
+        let link = "<?php echo BANNERS_IMG_LINK ?>" + selected_filename;
+
+        // Setup link
+        $("#banner-thumbnail").prop("src", link);
+    }
 </script>

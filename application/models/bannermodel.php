@@ -27,4 +27,8 @@ class BannerModel
 
         return $banners;
     }
+
+    public static function getBannerImages(): array {
+        return glob(BANNERS_IMG_PATH.'*');
+    }
 }

@@ -9,6 +9,8 @@ define('CATEGORIES_IMG_PATH', DIR . 'application/assets/img/categories/');
 define('BANNERS_IMG_PATH', DIR . 'application/assets/img/banners/');
 
 define('CATEGORIES_IMG_LINK','/application/assets/img/categories/');
+define('BANNERS_IMG_LINK', '/application/assets/img/banners/');
+
 define('DEFAULT_CATEGORY_IMG', "not_found.jpg");
 define('N_NEWEST_VIDEOS_HOMEPAGE', 10);
 define('N_CATEGORIES_HOMEPAGE',4);

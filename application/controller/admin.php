@@ -78,8 +78,12 @@ class Admin
 
     public function banner(){
         if(Auth::isAuthenticated()){
+            // Load data
+            $banner_images = BannerModel::getBannerImages();
             ViewLoader::load("admin/templates/header");
-            ViewLoader::load("admin/banner",array());
+            ViewLoader::load("admin/banner",array(
+                "banner_images" => $banner_images,
+            ));
             ViewLoader::load("admin/templates/footer");
         }
         else{
