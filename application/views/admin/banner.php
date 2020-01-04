@@ -45,13 +45,28 @@
                             </div>
 
                             <div class="md-form">
-                                <h4 class="h4-responsive">Cliente</h4>
-                                <select id="imageSelector" name="categoryImagePath"
-                                        class="browser-default custom-select">
-                                    <?php foreach (CategoriesModel::getCategoryImages() as $imagePath): ?>
-                                        <option value="<?php echo $imagePath ?>"><?php echo basename($imagePath) ?></option>
+                                <label for="select-client">Cliente</label>
+                                <select id="select-client" name="client">
+                                    <?php foreach (ClientModel::getClients() as $client): ?>
+                                        <option value="<?php echo $client->getId() ?>"><?php echo $client->getName() . " " . $client->getSurname(); ?></option>
                                     <?php endforeach; ?>
                                 </select>
+                                <p class="small">Per creare un nuovo cliente puoi utilizzare <a href="/admin/client">questa pagina</a></p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <input type="date" id="dateStart" class="form-control" name="dateStart" required>
+                                        <label for="dateStart">Data di inizio</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <input type="date" id="dateEnd" class="form-control" name="dateEnd" required>
+                                        <label for="dateEnd">Data di fine</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Image selector -->
@@ -138,16 +153,32 @@
 <!-- Modal manager -->
 <script type="text/javascript" src="/application/assets/js/admin/categories/modalmanager.js"></script>
 
+<!-- Smart select -->
+<script type="text/javascript" src="/application/assets/js/addons/selectize.min.js"></script>
+
 <!-- DataTables.js -->
 <script src="/application/assets/js/addons/datatables.min.js"></script>
 <script>
     $(document).ready(function () {
+        //update banner thumbnail after page load
+        update_banner_thumbnail();
+
         $("#categoriesTable").dataTable({
             responsive: true,
         });
 
         $("#bannerSelector").on("change",function () {
             update_banner_thumbnail();
+        });
+
+        // Load smart select
+        $('#select-client').selectize({
+            create: false,
+            sortField: {
+                field: 'text',
+                direction: 'asc'
+            },
+            dropdownParent: 'body'
         });
     });
 

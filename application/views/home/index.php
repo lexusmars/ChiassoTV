@@ -38,7 +38,7 @@
         </div>
 
         <!-- Categories container -->
-        <div class="p-3 wow fadeInLeft">
+        <div class="p-3 wow fadeIn">
             <!-- Container -->
             <div class="row text-center">
 
@@ -112,7 +112,7 @@
     </div>
 
     <?php if(count($newest_episodes) > 0): ?>
-    <div class="container-fluid wow slideInLeft" id="ultimi-caricamenti">
+    <div class="container-fluid wow fadeIn" id="ultimi-caricamenti">
         <div class="row">
             <div class="col-md-12 mt-5">
                 <h1 class="text-center h1-responsive">Ultime uscite</h1>

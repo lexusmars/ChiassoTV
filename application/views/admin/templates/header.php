@@ -35,6 +35,8 @@
     <link href="/application/assets/css/addons/datatables.min.css" rel="stylesheet">
     <!-- JQuery -->
     <script type="text/javascript" src="/application/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Smart select -->
+    <link href="/application/assets/css/selectize.bootstrap3.css" rel="stylesheet">
 
     <style>
 
@@ -98,6 +100,11 @@
                     <li class="nav-item">
                         <a class="nav-link waves-effect" href="<?php echo Application::buildUrl('admin/banner') ?>" target="_top">
                             Gestione banner
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="<?php echo Application::buildUrl('admin/client') ?>" target="_top">
+                            Gestione clienti
                         </a>
                     </li>
                 </ul>

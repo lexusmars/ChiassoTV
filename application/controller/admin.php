@@ -92,6 +92,21 @@ class Admin
         }
     }
 
+    public function client(){
+        if(Auth::isAuthenticated()){
+            // Load data
+            ViewLoader::load("admin/templates/header");
+            ViewLoader::load("admin/client", array(
+                "clients"=>ClientModel::getClients()
+            ));
+            ViewLoader::load("admin/templates/footer");
+        }
+        else{
+            // Redirect to home page -> Login panel
+            Application::redirect("admin");
+        }
+    }
+
     /**
      * This function is used to logout the user. It deletes all the user's session variables.
      */

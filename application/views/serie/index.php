@@ -12,7 +12,7 @@
         </div>
 
         <!-- Categories container -->
-        <div class="p-3 wow fadeInLeft">
+        <div class="p-3 wow fadeIn">
             <!-- Container -->
             <div class="row text-center">
 

@@ -33,7 +33,7 @@
                                     <?php endif; ?>
 
                                     <!-- Card -->
-                                    <div class="card" style="max-width: 20rem; max-height: 30rem; margin-right: 2rem;">
+                                    <div class="card mb-5" style="max-width: 20rem; max-height: 30rem; margin-right: 2rem;">
 
                                         <!-- Card image -->
                                         <div class="view overlay">
