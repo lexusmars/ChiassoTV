@@ -145,7 +145,49 @@ class Api
     }
 
     public function banner($action=null, $index=null){
+    }
 
+    public function client($action=null, $client=null){
+        if(Auth::isAuthenticated()){
+            $GLOBALS["NOTIFIER"]->clear();
+
+            if($action=="delete" && !is_null($client)){
+                if(!ClientModel::delete($client)){
+                    $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare l'utente.");
+                }
+
+                Application::redirect("admin/client");
+            }
+            // ADD NEW CLIENT
+            elseif($action=="add" && $_SERVER["REQUEST_METHOD"] == "POST"){
+                // Sanitize POST data and add record to database
+                $result = ClientModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+
+                // If it detects errors
+                if(is_array($result)){
+                    $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+
+                // Redirect back
+                Application::redirect("admin/client");
+            }
+            // UPDATE CLIENT
+            elseif($action=="update" && !is_null($client) && $_SERVER["REQUEST_METHOD"] == "POST"){
+                // Sanitize POST data and add record to database
+                $result = ClientModel::update($client, filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+
+                // If it detects errors
+                if(is_array($result)){
+                    $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+
+                // Redirect back
+                Application::redirect("admin/client");
+            }
+        }
+        else{
+            Application::redirect("");
+        }
     }
 }
 
