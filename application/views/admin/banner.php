@@ -40,12 +40,20 @@
                         <form class="form" method="post" action="/api/banner/add">
                             <!-- Category name -->
                             <div class="md-form">
-                                <input type="text" id="tipoBanner" class="form-control" name="bannerType" required>
-                                <label for="tipoBanner">Tipo di banner<span class="red-text">*</span></label>
+                                <?php if(count($subscription_types) > 0): ?>
+                                    <h6 class="h6">Tipo di abbonamento</h6>
+                                    <select id="subscriptionType" class="browser-default custom-select" name="subscription">
+                                        <?php foreach($subscription_types as $type): ?>
+                                            <option days="<?php echo $type->getDays();?>" value="<?php echo $type->getName(); ?>"><?php echo $type->getName(); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else: ?>
+                                    <h6 class="text-center text-danger">Non ci sono abbonamenti disponibili, contatta un amministratore</h6>
+                                <?php endif; ?>
                             </div>
 
                             <div class="md-form">
-                                <label for="select-client">Cliente</label>
+                                <h6 class="h6">Cliente</h6>
                                 <select id="select-client" name="client">
                                     <?php foreach (ClientModel::getClients() as $client): ?>
                                         <option value="<?php echo $client->getId() ?>"><?php echo $client->getName() . " " . $client->getSurname(); ?></option>
@@ -95,7 +103,12 @@
                             </div>
 
                             <!-- Add category button -->
-                            <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi categoria</button>
+                            <?php if($isDataOk): ?>
+                                <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi categoria</button>
+                            <?php else: ?>
+                                <h5 class="h5-responsive text-danger text-center">Non è possibile la creazione del banner finchè tutti gli errori non sono stati risolti.
+                                In caso di problemi contattare un'amministratore.</h5>
+                            <?php endif; ?>
                             <br>
                         </form>
                     </div>

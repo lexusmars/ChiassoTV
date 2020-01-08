@@ -99,17 +99,17 @@
                                     <tr id="clientData<?php echo $client->getId(); ?>">
                                         <td id="clientName"><?php echo $client->getName(); ?></td>
                                         <td id="clientSurname"><?php echo $client->getSurname(); ?></td>
-                                        <td id="clientSurname"><?php echo $client->getEmail(); ?></td>
+                                        <td id="clientEmail"><?php echo $client->getEmail(); ?></td>
                                         <td id="clientPhone"><?php echo $client->getPhone(); ?></td>
 
 
                                         <td>
-                                            <button class="btn btn-blue-grey edit-category-button"
+                                            <button class="btn btn-blue-grey edit-client-button"
                                                     client-target="<?php echo $client->getId(); ?>">
                                                 Modifica
                                             </button>
 
-                                            <button class="btn btn-danger delete-category-button" data-toggle="modal"
+                                            <button class="btn btn-danger delete-client-button" data-toggle="modal"
                                                     data-target="#modalConfirmDelete" client-target="<?php echo $client->getId(); ?>">
                                                 Elimina
                                             </button>
@@ -125,6 +125,89 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modals -->
+
+        <!--Modal: modalConfirmDelete-->
+        <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="modalEliminaMessaggio"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                <!--Content-->
+                <div class="modal-content text-center">
+                    <!--Header-->
+                    <div class="modal-header d-flex justify-content-center">
+                        <p class="heading" id="modalEliminaMessaggio">INSERT MESSAGE HERE</p>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <i class="fas fa-times fa-4x animated rotateIn"></i>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer flex-center">
+                        <a href="emptylink.com" id="eliminaButton"  class="btn btn-outline-danger">Si</a>
+                        <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: modalConfirmDelete-->
+
+        <!--Modal: editEpisode -->
+        <div class="modal fade" id="modalEditClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
+
+            <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modifica episodio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modalUpdateForm" class="form" method="post">
+                            <!-- Client name -->
+                            <div class="md-form">
+                                <input type="text" id="clientNameModal" class="form-control" name="name" required>
+                                <label for="clientNameModal">Nome</label>
+                            </div>
+
+                            <!-- Client surname -->
+                            <div class="md-form">
+                                <input type="text" id="clientSurnameModal" class="form-control" name="surname" required>
+                                <label for="clientSurnameModal">Cognome</label>
+                            </div>
+
+                            <!-- Client Email -->
+                            <div class="md-form">
+                                <input type="email" id="clientEmailModal" class="form-control" name="email" required>
+                                <label for="clientEmailModal">E-mail</label>
+                            </div>
+
+                            <!-- Client Email -->
+                            <div class="md-form">
+                                <input type="text" id="clientPhoneModal" class="form-control" name="phone" required>
+                                <label for="clientPhoneModal">Telefono</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+                        <button id="submitSalvaModificheModal" type="button" class="btn btn-primary">Salva modifiche</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal: editEpisode -->
+
+
 
         <br>
 
@@ -142,7 +225,7 @@
 </main>
 
 <!-- Modal manager -->
-<script type="text/javascript" src="/application/assets/js/admin/categories/modalmanager.js"></script>
+<script type="text/javascript" src="/application/assets/js/admin/client/modalmanager.js"></script>
 
 <!-- Smart select -->
 <script type="text/javascript" src="/application/assets/js/addons/selectize.min.js"></script>

@@ -173,7 +173,7 @@ class Api
             }
             // UPDATE CLIENT
             elseif($action=="update" && !is_null($client) && $_SERVER["REQUEST_METHOD"] == "POST"){
-                // Sanitize POST data and add record to database
+                // Sanitize POST data and update record to database
                 $result = ClientModel::update($client, filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
                 // If it detects errors

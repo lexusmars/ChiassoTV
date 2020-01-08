@@ -159,7 +159,7 @@
 
                 <!--Footer-->
                 <div class="modal-footer flex-center">
-                    <a href="emptylink.com" id="eliminaButton" btn btn-outline-danger">Si</a>
+                    <a href="emptylink.com" id="eliminaButton"  class="btn btn-outline-danger">Si</a>
                     <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
                 </div>
             </div>
