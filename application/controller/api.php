@@ -145,6 +145,23 @@ class Api
     }
 
     public function banner($action=null, $index=null){
+        if(Auth::isAuthenticated()){
+            $GLOBALS["NOTIFIER"]->clear();
+
+            // ADD NEW BANNER
+            if($action=="add" && $_SERVER["REQUEST_METHOD"] == "POST"){
+                // Sanitize POST data and add record to database
+                $result = BannerModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+
+                // If it detects errors
+                if(is_array($result)){
+                    $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+
+                // Redirect back
+                Application::redirect("admin/banner");
+            }
+        }
     }
 
     public function client($action=null, $client=null){

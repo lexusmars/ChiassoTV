@@ -81,11 +81,13 @@ class Admin
             // Load data
             $banner_images = BannerModel::getBannerImages();
             $subscription_types = SubscriptionModel::getSubscriptionTypes();
+            $banners = BannerModel::getBanners();
 
             $isDataOk = count($banner_images) > 0 && count($subscription_types) > 0;
             ViewLoader::load("admin/templates/header");
             ViewLoader::load("admin/banner",array(
                 "isDataOk" => $isDataOk,
+                "banners" => $banners,
                 "banner_images" => $banner_images,
                 "subscription_types" => $subscription_types
             ));

@@ -91,5 +91,31 @@ class Banner
     {
         return $this->client_id;
     }
+}
 
+class BannerValidator{
+
+    public static function validatePastDateTime($date): bool{
+        /* Check if date is in the past or not */
+        return $date > new DateTime();
+    }
+
+    public static function validateStartEndDate($start_date, $end_date): bool {
+        /* Check if the start date is minor than the end date */
+        return $start_date < $end_date;
+    }
+
+    public static function validateBannerImage($filename): bool{
+        /* Check if the image selected exists */
+        return file_exists(BANNERS_IMG_PATH . $filename);
+    }
+
+    public static function validateSubscriptionType(Subscription $type, DateTime $start_date, DateTime $end_date){
+        $diff_days = $start_date->diff($end_date)->format("d");
+        return $type->getDays() == $diff_days;
+    }
+
+    public static function validateLink($link){
+        return filter_var($link, FILTER_VALIDATE_URL);
+    }
 }

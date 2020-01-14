@@ -3,6 +3,7 @@
 
 class BannerModel
 {
+    private static $errors = array();
 
     public static function getBanners(): array{
         $result = DB::query("SELECT * FROM banner");
@@ -11,17 +12,16 @@ class BannerModel
 
     private static function parseBanners($data){
         $banners = array();
-
         foreach ($data as $row) {
             $banners[] = new Banner(
-                $data["id"],
-                $data["img_name"],
-                $data["link"],
-                $data["start_date"],
-                $data["end_date"],
-                $data["created_at"],
-                $data["type"],
-                $data["client_id"]
+                $row["id"],
+                $row["img_name"],
+                $row["link"],
+                $row["start_date"],
+                $row["end_date"],
+                $row["created_at"],
+                $row["type"],
+                $row["client_id"]
             );
         }
 
@@ -31,5 +31,66 @@ class BannerModel
 
     public static function getBannerImages(): array {
         return glob(BANNERS_IMG_PATH.'*');
+    }
+
+    public static function add($data)
+    {
+        if(self::validate($data)){
+            $result = DB::insert('banner', array(
+                'type' => $data["type"],
+                'client_id' => $data["client_id"],
+                'start_date' => $data["start_date"],
+                'end_date' => $data["end_date"],
+                'link' => $data["link"],
+                'img_name' => $data["img_name"]
+            ));
+
+            return !$result ? array("C'è stato un problema durante l'inserimento dei dati all'interno del 
+                database. Se l'errore persiste contatta l'amministratore") : true;
+        }
+        else{
+            return self::$errors;
+        }
+    }
+
+    private static function validate(array $data): bool{
+        // TODO: ADD type + client_id + subscription check
+
+        self::$errors = [];
+
+        /*
+         *
+         *  Controlli date
+        */
+
+        // Create date object
+        $start_date = date_create_from_format("Y-m-d", $data["start_date"]);
+        $end_date = date_create_from_format("Y-m-d", $data["end_date"]);
+        
+        if(!BannerValidator::validatePastDateTime($start_date)){
+            self::$errors[] = "La data di inizio deve essere nel futuro";
+        }
+        if(!BannerValidator::validatePastDateTime($end_date)){
+            self::$errors[] = "La data di fine deve essere nel futuro";
+        }
+        else{
+            if(!BannerValidator::validateStartEndDate($start_date, $end_date)){
+                self::$errors[] = "La data di inizio deve essere precedente a quella di fine";
+            }
+        }
+
+
+        // Validazione link (se immesso)
+        if(strlen($data["link"]) > 0){
+            if(!BannerValidator::validateLink($data["link"])){
+                self::$errors[] = "Il link inserito non è valido";
+            }
+        }
+        else{
+            // Non è stato inserito nessun link
+            $data["link"] = null;
+        }
+
+        return count(self::$errors) == 0;
     }
 }

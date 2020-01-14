@@ -41,8 +41,8 @@
                             <!-- Category name -->
                             <div class="md-form">
                                 <?php if(count($subscription_types) > 0): ?>
-                                    <h6 class="h6">Tipo di abbonamento</h6>
-                                    <select id="subscriptionType" class="browser-default custom-select" name="subscription">
+                                    <h6 class="h6">Tipo di abbonamento<span class="text-danger font-weight-bold">*</span></h6>
+                                    <select id="subscriptionType" class="browser-default custom-select" name="type">
                                         <?php foreach($subscription_types as $type): ?>
                                             <option days="<?php echo $type->getDays();?>" value="<?php echo $type->getName(); ?>"><?php echo $type->getName(); ?></option>
                                         <?php endforeach; ?>
@@ -53,8 +53,8 @@
                             </div>
 
                             <div class="md-form">
-                                <h6 class="h6">Cliente</h6>
-                                <select id="select-client" name="client">
+                                <h6 class="h6">Cliente<span class="text-danger font-weight-bold">*</span></h6>
+                                <select id="select-client" name="client_id">
                                     <?php foreach (ClientModel::getClients() as $client): ?>
                                         <option value="<?php echo $client->getId() ?>"><?php echo $client->getName() . " " . $client->getSurname(); ?></option>
                                     <?php endforeach; ?>
@@ -65,16 +65,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form">
-                                        <input type="date" id="dateStart" class="form-control" name="dateStart" required>
-                                        <label for="dateStart">Data di inizio</label>
+                                        <input type="date" id="start_date" class="form-control" name="start_date" required>
+                                        <label for="start_date">Data di inizio<span class="text-danger font-weight-bold">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form">
-                                        <input type="date" id="dateEnd" class="form-control" name="dateEnd" required>
-                                        <label for="dateEnd">Data di fine</label>
+                                        <input type="date" id="end_date" class="form-control" name="end_date" required>
+                                        <label for="end_date">Data di fine<span class="text-danger font-weight-bold">*</span></label>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="md-form">
+                                <input type="text" id="link" class="form-control" name="link">
+                                <label for="link">Link sito web</label>
                             </div>
 
                             <!-- Image selector -->
@@ -82,8 +87,8 @@
                                 <?php if (count($banner_images) > 0): ?>
                                 <div class="row">
                                     <div class="col-md-8 mb-3">
-                                        <h4 class="h4-responsive">Immagine banner</h4>
-                                        <select id="bannerSelector" name="bannerImagePath"
+                                        <h4 class="h4-responsive">Immagine banner<span class="text-danger font-weight-bold">*</span></h4>
+                                        <select id="bannerSelector" name="img_name"
                                                 class="browser-default custom-select">
                                             <?php foreach ($banner_images as $imagePath): ?>
                                                 <option value="<?php echo basename($imagePath) ?>"><?php echo basename($imagePath) ?></option>
@@ -104,7 +109,7 @@
 
                             <!-- Add category button -->
                             <?php if($isDataOk): ?>
-                                <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi categoria</button>
+                                <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi bannner</button>
                             <?php else: ?>
                                 <h5 class="h5-responsive text-danger text-center">Non è possibile la creazione del banner finchè tutti gli errori non sono stati risolti.
                                 In caso di problemi contattare un'amministratore.</h5>
@@ -149,6 +154,58 @@
         </div>
 
         <br>
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+            <div class="col-md-12">
+
+                <div class="card" id="categorie">
+                    <div class="card-header"><h3 class="h3-responsive">Banners</h3></div>
+                    <div class="card-body">
+                        <?php if (count($banners) > 0): ?>
+                            <table id="categoriesTable" class="table-striped table-responsive" width="100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Data inizio</th>
+                                    <th scope="col">Data fine</th>
+                                    <th scope="col">Tipo abbonamento</th>
+                                    <th scope="col">Immagine banner</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Azioni</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($banners as $banner): ?>
+                                    <tr id="banner<?php echo $banner->getId(); ?>">
+                                        <td scope="row"><?php echo $banner->getId(); ?></td>
+                                        <td id="start_date>"><?php echo $banner->getStartDate(); ?></td>
+                                        <td id="end_date"><?php echo $banner->getEndDate(); ?></td>
+                                        <td id="subscription_type"><?php echo $banner->getType(); ?></td>
+                                        <td id="banner_img">WIP</td>
+                                        <td><?php echo $banner->getClientId(); ?></td>
+                                        <td>
+                                            <button class="btn btn-blue-grey edit-category-button"
+                                                    banner-target="<?php echo $banner->getId(); ?>">
+                                                Modifica
+                                            </button>
+
+                                            <button class="btn btn-danger delete-category-button" data-toggle="modal"
+                                                    data-target="#modalConfirmDelete" banner-target="<?php echo $banner->getId(); ?>">
+                                                Elimina
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <h3 class="h3-responsive">Non ci sono categorie.</h3>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <!--Copyright-->
