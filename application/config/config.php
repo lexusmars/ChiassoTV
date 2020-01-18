@@ -43,3 +43,6 @@ define("SITEMAP_PATH", DIR . "application/crawlers/sitemap.xml");
 /* FOR SITEMAP */
 define("EPISODE_LINK_FORMAT", URL . "episodio/player/%d");
 define("CATEGORY_LINK_FORMAT", URL . "serie/episodi/%d");
+
+/* FOR APIs */
+define('API_TOKEN', "test_token");

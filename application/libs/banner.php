@@ -12,14 +12,14 @@ class Banner
     private $type;
     private $client_id;
 
-    function __construct(int $id, string $img_name, string $link, $start_date, $end_date, $created_at, $type, $client_id)
+    function __construct(int $id, string $img_name, $link, $start_date, $end_date, $created_at, $type, $client_id)
     {
         $this->id = $id;
         $this->img_name = $img_name;
         $this->link = $link;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->created_at = $created_at;
+        $this->start_date = date_create_from_format("Y-m-d H:i:s",$start_date);
+        $this->end_date = date_create_from_format("Y-m-d H:i:s",$end_date) ;
+        $this->created_at = date_create_from_format("Y-m-d H:i:s",$created_at);
         $this->type = $type;
         $this->client_id = $client_id;
     }
@@ -44,10 +44,7 @@ class Banner
         return $this->img_name;
     }
 
-    /**
-     * @return string
-     */
-    public function getLink(): string
+    public function getLink()
     {
         return $this->link;
     }

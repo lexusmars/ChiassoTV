@@ -12,7 +12,7 @@ class ClientModel
 
     public static function getClient($id){
         $result = DB::query("SELECT * FROM client WHERE id=%d",$id);
-        return self::parseClient($result);
+        return self::parseClient($result[0]);
     }
 
     public static function add($data)

@@ -44,6 +44,10 @@ class Client
         return $this->surname;
     }
 
+    public function getFullName(){
+        return $this->name . " " . $this->getSurname();
+    }
+
     /**
      * @return mixed
      */

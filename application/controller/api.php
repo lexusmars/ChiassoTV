@@ -147,6 +147,14 @@ class Api
     public function banner($action=null, $index=null){
         if(Auth::isAuthenticated()){
             $GLOBALS["NOTIFIER"]->clear();
+            // DELETE BANNER
+            if($action=="delete" && !is_null($index)){
+                if(!BannerModel::delete($index)){
+                    $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare il banner.");
+                }
+
+                Application::redirect("admin/banner");
+            }
 
             // ADD NEW BANNER
             if($action=="add" && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -160,6 +168,68 @@ class Api
 
                 // Redirect back
                 Application::redirect("admin/banner");
+            }
+
+            if($action=="update" && $_SERVER["REQUEST_METHOD"] == "POST" && !is_null($index)){
+                // Sanitize POST data and add record to database
+                $result = BannerModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING), $id);
+
+                // If it detects errors
+                if(is_array($result)){
+                    $GLOBALS["NOTIFIER"]->add_all($result);
+                }
+
+                // Redirect back
+                Application::redirect("admin/banner");
+            }
+        }
+        else{
+            // This API returns a random video per category
+            if(is_null($action) && is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST"){
+                // Set page content type
+                Header("Content-Type: json");
+
+                // Check if token was sent
+                if(isset($_POST["token"])){
+                    // Check if token is right
+                    if($_POST["token"] == API_TOKEN){
+                        // Right token sent
+
+                        // Read data from database
+                        $episodes = [];
+
+                        $available_categories = CategoriesModel::getCategories();
+                        // Get random episode per category
+                        foreach($available_categories as $category){
+                            // Get all episodes
+
+                            // Check if the category has actually episodes
+                            $category_episodes = EpisodeModel::getCategoryEpisodes($category);
+
+                            if(count($category_episodes) > 0){
+                                // Get random episode
+                                $episodes[] = $category_episodes[rand(0, count($category_episodes)-1)];
+                            }
+                            else{
+                                // Skip category
+                                continue;
+                            }
+                        }
+
+                        echo json_encode($episodes);
+                    }
+                    else{
+                        // Wrong token
+                        return json_encode(array("status"=>"failed", "message"=>"wrong token"));
+                    }
+                }
+                else{
+                    // Token wasn't sent
+                    return json_encode(array("status"=>"failed", "message"=>"missing token"));
+                }
+            }
+            else{
+                Application::redirect("");
             }
         }
     }

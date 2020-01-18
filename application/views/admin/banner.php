@@ -40,15 +40,18 @@
                         <form class="form" method="post" action="/api/banner/add">
                             <!-- Category name -->
                             <div class="md-form">
-                                <?php if(count($subscription_types) > 0): ?>
-                                    <h6 class="h6">Tipo di abbonamento<span class="text-danger font-weight-bold">*</span></h6>
+                                <?php if (count($subscription_types) > 0): ?>
+                                    <h6 class="h6">Tipo di abbonamento<span
+                                                class="text-danger font-weight-bold">*</span></h6>
                                     <select id="subscriptionType" class="browser-default custom-select" name="type">
-                                        <?php foreach($subscription_types as $type): ?>
-                                            <option days="<?php echo $type->getDays();?>" value="<?php echo $type->getName(); ?>"><?php echo $type->getName(); ?></option>
+                                        <?php foreach ($subscription_types as $type): ?>
+                                            <option days="<?php echo $type->getDays(); ?>"
+                                                    value="<?php echo $type->getName(); ?>"><?php echo $type->getName(); ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 <?php else: ?>
-                                    <h6 class="text-center text-danger">Non ci sono abbonamenti disponibili, contatta un amministratore</h6>
+                                    <h6 class="text-center text-danger">Non ci sono abbonamenti disponibili, contatta un
+                                        amministratore</h6>
                                 <?php endif; ?>
                             </div>
 
@@ -59,20 +62,24 @@
                                         <option value="<?php echo $client->getId() ?>"><?php echo $client->getName() . " " . $client->getSurname(); ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <p class="small">Per creare un nuovo cliente puoi utilizzare <a href="/admin/client">questa pagina</a></p>
+                                <p class="small">Per creare un nuovo cliente puoi utilizzare <a href="/admin/client">questa
+                                        pagina</a></p>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form">
-                                        <input type="date" id="start_date" class="form-control" name="start_date" required>
-                                        <label for="start_date">Data di inizio<span class="text-danger font-weight-bold">*</span></label>
+                                        <input type="date" id="start_date" class="form-control" name="start_date"
+                                               required>
+                                        <label for="start_date">Data di inizio<span
+                                                    class="text-danger font-weight-bold">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form">
                                         <input type="date" id="end_date" class="form-control" name="end_date" required>
-                                        <label for="end_date">Data di fine<span class="text-danger font-weight-bold">*</span></label>
+                                        <label for="end_date">Data di fine<span
+                                                    class="text-danger font-weight-bold">*</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -85,21 +92,23 @@
                             <!-- Image selector -->
                             <div class="md-form">
                                 <?php if (count($banner_images) > 0): ?>
-                                <div class="row">
-                                    <div class="col-md-8 mb-3">
-                                        <h4 class="h4-responsive">Immagine banner<span class="text-danger font-weight-bold">*</span></h4>
-                                        <select id="bannerSelector" name="img_name"
-                                                class="browser-default custom-select">
-                                            <?php foreach ($banner_images as $imagePath): ?>
-                                                <option value="<?php echo basename($imagePath) ?>"><?php echo basename($imagePath) ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-8 mb-3">
+                                            <h4 class="h4-responsive">Immagine banner<span
+                                                        class="text-danger font-weight-bold">*</span></h4>
+                                            <select id="bannerSelector" name="img_name"
+                                                    class="browser-default custom-select">
+                                                <?php foreach ($banner_images as $imagePath): ?>
+                                                    <option value="<?php echo basename($imagePath) ?>"><?php echo basename($imagePath) ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4  text-center">
+                                            <!-- banner image showcase-->
+                                            <img class="img-fluid img-thumbnail" style="max-height: 30vh;"
+                                                 id="banner-thumbnail" src="" alt="Banner showcase image">
+                                        </div>
                                     </div>
-                                    <div class="col-md-4  text-center">
-                                        <!-- banner image showcase-->
-                                        <img class="img-fluid img-thumbnail"  style="max-height: 30vh;" id="banner-thumbnail" src="" alt="Banner showcase image">
-                                    </div>
-                                </div>
                                 <?php else: ?>
                                     <h6 class="text-center text-danger">Non ci sono immagini disponibili. Per creare dei
                                         banner devi prima aggiungere le immagini tramite <a
@@ -108,11 +117,13 @@
                             </div>
 
                             <!-- Add category button -->
-                            <?php if($isDataOk): ?>
-                                <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi bannner</button>
+                            <?php if ($isDataOk): ?>
+                                <button class="btn btn-dark-green btn-block my-4" type="submit">Aggiungi bannner
+                                </button>
                             <?php else: ?>
-                                <h5 class="h5-responsive text-danger text-center">Non è possibile la creazione del banner finchè tutti gli errori non sono stati risolti.
-                                In caso di problemi contattare un'amministratore.</h5>
+                                <h5 class="h5-responsive text-danger text-center">Non è possibile la creazione del
+                                    banner finchè tutti gli errori non sono stati risolti.
+                                    In caso di problemi contattare un'amministratore.</h5>
                             <?php endif; ?>
                             <br>
                         </form>
@@ -162,10 +173,9 @@
                     <div class="card-header"><h3 class="h3-responsive">Banners</h3></div>
                     <div class="card-body">
                         <?php if (count($banners) > 0): ?>
-                            <table id="categoriesTable" class="table-striped table-responsive" width="100%">
-                                <thead>
+                            <table id="categoriesTable" class="table-striped table-responsive">
+                                <thead class="text-center">
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Data inizio</th>
                                     <th scope="col">Data fine</th>
                                     <th scope="col">Tipo abbonamento</th>
@@ -175,15 +185,20 @@
                                     <th scope="col">Azioni</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="w-100">
                                 <?php foreach ($banners as $banner): ?>
                                     <tr id="banner<?php echo $banner->getId(); ?>">
-                                        <td scope="row"><?php echo $banner->getId(); ?></td>
-                                        <td id="start_date>"><?php echo $banner->getStartDate(); ?></td>
-                                        <td id="end_date"><?php echo $banner->getEndDate(); ?></td>
+                                        <td id="start_date>"><?php echo $banner->getStartDate()->format("d/m/Y"); ?></td>
+                                        <td id="end_date"><?php echo $banner->getEndDate()->format("d/m/Y"); ?></td>
                                         <td id="subscription_type"><?php echo $banner->getType(); ?></td>
-                                        <td id="banner_img">WIP</td>
-                                        <td><?php echo $banner->getClientId(); ?></td>
+                                        <td id="banner_img"><?php echo $banner->getImgName(); ?></td>
+                                        <?php if ($banner->getLink() == ""): ?>
+                                            <td id="link" class="text-danger font-weight-bold"> -</td>
+                                        <?php else: ?>
+                                            <td id="link"><a href="<?php echo $banner->getLink(); ?>" target="_blank">Apri</a>
+                                            </td>
+                                        <?php endif; ?>
+                                        <td id="clientFullname"><?php echo ClientModel::getClient($banner->getClientId())->getFullName(); ?></td>
                                         <td>
                                             <button class="btn btn-blue-grey edit-category-button"
                                                     banner-target="<?php echo $banner->getId(); ?>">
@@ -191,7 +206,8 @@
                                             </button>
 
                                             <button class="btn btn-danger delete-category-button" data-toggle="modal"
-                                                    data-target="#modalConfirmDelete" banner-target="<?php echo $banner->getId(); ?>">
+                                                    data-target="#modalConfirmDelete"
+                                                    banner-target="<?php echo $banner->getId(); ?>">
                                                 Elimina
                                             </button>
                                         </td>
@@ -200,12 +216,78 @@
                                 </tbody>
                             </table>
                         <?php else: ?>
-                            <h3 class="h3-responsive">Non ci sono categorie.</h3>
+                            <h3 class="h3-responsive">Non ci sono banner.</h3>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modals -->
+
+        <!-- Delete modal -->
+        <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog"
+             aria-labelledby="modalEliminaMessaggio"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                <!--Content-->
+                <div class="modal-content text-center">
+                    <!--Header-->
+                    <div class="modal-header d-flex justify-content-center">
+                        <p class="heading" id="modalEliminaMessaggio">INSERT MESSAGE HERE</p>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <i class="fas fa-times fa-4x animated rotateIn"></i>
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer flex-center">
+                        <a href="emptylink.com" id="eliminaButton" class="btn btn-outline-danger">Si</a>
+                        <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- Delete modal -->
+
+        <!-- Edit modal -->
+        <!--Modal: editEpisode -->
+        <div class="modal fade" id="modalEditClient" tabindex="-1" role="dialog"
+             aria-labelledby="editModalTitle"
+             aria-hidden="true">
+            <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalTitle">Modifica banner</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modalUpdateForm" class="form" method="post">
+                                <input type="select" id="clientNameModal" class="form-control" name="name" required>
+                                <label for="banner">Nome</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+                        <button id="submitSalvaModificheModal" type="button" class="btn btn-primary">Salva modifiche
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal: editEpisode -->
+        <!-- Edit modal -->
+        <!-- Modals -->
 
         <footer>
             <!--Copyright-->
@@ -221,7 +303,7 @@
 </main>
 
 <!-- Modal manager -->
-<script type="text/javascript" src="/application/assets/js/admin/categories/modalmanager.js"></script>
+<script type="text/javascript" src="/application/assets/js/admin/banner/modalmanager.js"></script>
 
 <!-- Smart select -->
 <script type="text/javascript" src="/application/assets/js/addons/selectize.min.js"></script>
@@ -233,11 +315,9 @@
         //update banner thumbnail after page load
         update_banner_thumbnail();
 
-        $("#categoriesTable").dataTable({
-            responsive: true,
-        });
+        $("#categoriesTable").dataTable({responsive: true});
 
-        $("#bannerSelector").on("change",function () {
+        $("#bannerSelector").on("change", function () {
             update_banner_thumbnail();
         });
 
@@ -252,7 +332,7 @@
         });
     });
 
-    function update_banner_thumbnail(){
+    function update_banner_thumbnail() {
         // Get image and generate link
         let selected_filename = $("#bannerSelector").children("option:selected").val();
         let link = "<?php echo BANNERS_IMG_LINK ?>" + selected_filename;

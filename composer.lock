@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03c35b189c838179c9d8760ef67f3087",
+    "content-hash": "8410cf742f5d42e685edc09ad7af8494",
     "packages": [
         {
             "name": "sergeytsalkov/meekrodb",
@@ -56,6 +56,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": []
 }

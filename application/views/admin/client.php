@@ -164,6 +164,28 @@
             <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
             <div class="modal-dialog modal-dialog-centered" role="document">
 
+
+
+
+
+
+
+
+
+                <!-- TODO: FINISH EDIT MODAL -->
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Modifica episodio</h5>
