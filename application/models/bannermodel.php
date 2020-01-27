@@ -11,6 +11,11 @@ class BannerModel
         return self::parseBanners($result);
     }
 
+    public static function getAvailableBanners(): array{
+        $result = DB::query("SELECT * FROM banner WHERE start_date <= CURRENT_DATE() AND end_date >= CURRENT_DATE()");
+        return self::parseBanners($result);
+    }
+
     private static function parseBanners($data)
     {
         $banners = array();
@@ -87,7 +92,6 @@ class BannerModel
         self::$errors = [];
 
         /*
-         *
          *  Controlli date
         */
 

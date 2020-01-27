@@ -274,7 +274,6 @@
                         <form id="modalUpdateForm" class="form" method="post">
                                 <input type="select" id="clientNameModal" class="form-control" name="name" required>
                                 <label for="banner">Nome</label>
-                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -310,6 +309,13 @@
 
 <!-- DataTables.js -->
 <script src="/application/assets/js/addons/datatables.min.js"></script>
+
+<!-- Moment.js -->
+<script src="/application/assets/js/addons/moment.min.js"></script>
+
+<!-- Form manager -->
+<script type="text/javascript" src="/application/assets/js/admin/banner/formmanager.js"></script>
+
 <script>
     $(document).ready(function () {
         //update banner thumbnail after page load
@@ -330,6 +336,9 @@
             },
             dropdownParent: 'body'
         });
+
+        // Set default date (today)
+        $("#start_date").val(moment().format("YYYY-MM-DD"));
     });
 
     function update_banner_thumbnail() {

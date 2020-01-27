@@ -77,7 +77,7 @@
 
 </style>
 
-<body class="grey lighten-3" data-spy="scroll" data-target="#chiassoTvNavbar" data-offset="0">
+<body class="grey lighten-3" data-spy="scroll" data-target="#chiassoTvNavbar" data-offset="0" style="overflow-x: hidden !important;">
 
 <!--Main Navigation-->
 <header class="d-none">

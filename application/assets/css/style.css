@@ -74,6 +74,10 @@ footer li{
   margin-bottom: 1.5vh;
 }
 
+.banner{
+  max-height: 30vh !important;
+}
+
 .newest-episodes-div{
 }
 
@@ -109,6 +113,14 @@ footer li{
   transition: 0.5s;
   color: #000;
   background-size: 4px 50px;
+}
+
+.image-slider-wrapper {
+  height:auto !important;
+}
+
+.image-slide {
+  height:auto !important;
 }
 
 /* Override mdb style */

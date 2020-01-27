@@ -17,8 +17,6 @@ define('N_CATEGORIES_HOMEPAGE',4);
 define('EPISODES_MANAGER_CATEGORIES_PER_ROW', 3);
 define('YOUTUBE_EMBEDDED_VIDEOS_LINK_BASE', "https://www.youtube.com/embed/");
 define('YOUTUBE_THUMBNAIL_LINK_BASE', "https://img.youtube.com/vi/%s/mqdefault.jpg");
-
-/* TODO: CHECK NAME */
 define('CHIASSO_NEWS_CATEGORY_ID', "1");
 
 $autoload_directories = array(

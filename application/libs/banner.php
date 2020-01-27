@@ -17,8 +17,8 @@ class Banner
         $this->id = $id;
         $this->img_name = $img_name;
         $this->link = $link;
-        $this->start_date = date_create_from_format("Y-m-d H:i:s",$start_date);
-        $this->end_date = date_create_from_format("Y-m-d H:i:s",$end_date) ;
+        $this->start_date = date_create_from_format("Y-m-d",$start_date);
+        $this->end_date = date_create_from_format("Y-m-d",$end_date) ;
         $this->created_at = date_create_from_format("Y-m-d H:i:s",$created_at);
         $this->type = $type;
         $this->client_id = $client_id;
@@ -94,7 +94,7 @@ class BannerValidator{
 
     public static function validatePastDateTime($date): bool{
         /* Check if date is in the past or not */
-        return $date > new DateTime();
+        return date_diff(new DateTime(),$date)->format("%a") >= '0' ? true : false;
     }
 
     public static function validateStartEndDate($start_date, $end_date): bool {

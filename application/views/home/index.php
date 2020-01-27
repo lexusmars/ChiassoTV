@@ -1,4 +1,5 @@
 <main class="d-none">
+    <?php var_dump($banners); ?>
     <!-- Chiasso News -->
     <div class="container-fluid p-0">
         <div id="chiassoNewsVideo" class="w-100 p-4"
@@ -13,7 +14,7 @@
                 </strong></h1>
             <div class="row justify-content-center">
                 <?php if(isset($chiasso_news_episode)): ?>
-                    <div class="embed-responsive embed-responsive-16by9 wow fadeInLeft" style="max-width: 50rem;">
+                    <div class="embed-responsive embed-responsive-16by9" style="max-width: 50rem;">
                         <iframe class="embed-responsive-item"
                                 title="<?php echo $chiasso_news_episode->getTitle(); ?>"
                                 aria-hidden="true"
@@ -38,7 +39,7 @@
         </div>
 
         <!-- Categories container -->
-        <div class="p-3 wow fadeIn">
+        <div class="p-3">
             <!-- Container -->
             <div class="row text-center">
 
@@ -100,6 +101,51 @@
         <!-- Categories container -->
     </div>
 
+    <?php if (count($banners) > 0): ?>
+    <!-- Sponsor -->
+    <div class="container-fluid" id="sponsors">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h1 class="text-center h1-responsive">Sponsor</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-5">
+        <div class="swiper-banner-container">
+            <div class="swiper-wrapper image-slider-wrapper">
+                <?php foreach($banners as $banner): ?>
+                    <div class="swiper-slide image-slide">
+                        <!--Zoom effect-->
+                        <div class="view overlay">
+                            <?php if(strlen($banner->getLink()) > 0): ?>
+                                <a href="<?php echo $banner->getLink();?>" target="_blank">
+                                    <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                         class="img-fluid"
+                                         alt="Sponsor banner">
+                                </a>
+                            <?php else: ?>
+                                <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                     class="img-fluid"
+                                     alt="Sponsor banner">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Add Arrows -->
+            <div class="swiper-banner-button-next text-danger font-weight-bold"></div>
+            <div class="swiper-banner-button-before text-danger font-weight-bold"></div>
+        </div>
+    </div>
+    <!-- Sponsor -->
+    <?php endif; ?>
+
+    <!-- Partner -->
     <div id="partner-container" class="container-fluid purple-background" style="background-color: #5252d4;">
         <div class="row p-5 mask d-flex justify-content-center align-items-center">
             <div class="col-md-8">
@@ -123,6 +169,7 @@
             </div>
         </div>
     </div>
+    <!-- Partner -->
 
     <!-- Swiper -->
     <div class="container-fluid">
@@ -168,8 +215,7 @@
 <script src="/application/assets/js/addons/swiper.min.js"></script>
 <script>
     $(document).ready(function () {
-        //initialize swiper when document ready
-        var swiper = new Swiper('.swiper-container', {
+        let swiper = new Swiper('.swiper-container', {
             init: true,
             effect: 'coverflow',
             coverflowEffect: {
@@ -189,5 +235,22 @@
             observeParents: true
         });
         swiper.init();
+
+        let swiper_banner = new Swiper('.swiper-banner-container', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 40,
+            loop: true,
+            speed: 1000,
+            automaticResize: true,
+            autoplay: {
+                delay: 1000,
+                disableOnInteraction: false,
+                waitForTransition: true,
+            },
+            observer: true,
+            observeParents: true
+        });
+        swiper_banner.init();
     });
 </script>
