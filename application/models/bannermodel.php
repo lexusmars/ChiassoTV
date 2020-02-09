@@ -11,6 +11,19 @@ class BannerModel
         return self::parseBanners($result);
     }
 
+    public static function getBannersRandomOrder(): array{
+        $result = DB::query("SELECT * FROM banner ORDER BY RAND()");
+        return self::parseBanners($result);
+    }
+
+    public static function countBanners(): float {
+        return (float) DB::query("SELECT count(*) FROM banner")[0]["count(*)"];
+    }
+
+    public static function calculateTotalEarnings(): int{
+        return (int) DB::query("SELECT sum(Subscription.cost) FROM banner INNER JOIN subscription ON banner.type=subscription.name")[0]["sum(Subscription.cost)"];
+    }
+
     public static function getAvailableBanners(): array{
         $result = DB::query("SELECT * FROM banner WHERE start_date <= CURRENT_DATE() AND end_date >= CURRENT_DATE()");
         return self::parseBanners($result);

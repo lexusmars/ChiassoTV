@@ -4,6 +4,8 @@
     <div class="title-spacer"></div>
 
     <div id="categories-container" class="container-fluid">
+
+        <!-- Header -->
         <div class="row">
             <?php if (count($episodes) > 0): ?>
                 <div class="col-md-3">
@@ -23,9 +25,40 @@
                 </div>
             <?php endif; ?>
         </div>
+        <!-- Header -->
+
+        <?php if (count($banners) > 0): ?>
+            <div class="container-fluid mb-3 mt-5 overflow-hidden">
+                <div class="swiper-banner-container">
+                    <div class="swiper-wrapper image-slider-wrapper">
+                        <?php foreach($banners as $banner): ?>
+                            <div class="swiper-slide image-slide">
+                                <!--Zoom effect-->
+                                <div class="view overlay">
+                                    <?php if(strlen($banner->getLink()) > 0): ?>
+                                        <a href="<?php echo $banner->getLink();?>" target="_blank">
+                                            <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                                 class="img-fluid"
+                                                 alt="Sponsor banner">
+                                        </a>
+                                    <?php else: ?>
+                                        <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                             class="img-fluid"
+                                             alt="Sponsor banner">
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <!-- Sponsor -->
+            <div id="banner-spacer" class="mb-5"></div>
+            <br>
+        <?php endif; ?>
 
         <!-- Categories container -->
-        <div id="episodes-container" class="p-5 wow fadeInLeft">
+        <div id="episodes-container" class="p-5 wow fadeIn">
             <!-- Container -->
             <div class="row text-center">
                 <?php if (count($episodes) > 0): ?>
@@ -44,8 +77,8 @@
                                         <div class="mask flex-center rgba-black-strong">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <p class="white-text">Caricato
-                                                        il <?php echo $episode->getCreationDatetime(); ?></p>
+                                                    <p class="white-text">Caricato il
+                                                        <?php echo $episode->getCreationDatetime()->format("d.m.y H:i"); ?></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <br>
@@ -95,3 +128,26 @@
         <!-- Categories container -->
     </div>
 </main>
+
+<script src="/application/assets/js/addons/swiper.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Init slider
+        let swiper_banner = new Swiper('.swiper-banner-container', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 40,
+            loop: true,
+            speed: 1000,
+            automaticResize: true,
+            autoplay: {
+                delay: 1000,
+                disableOnInteraction: false,
+                waitForTransition: true,
+            },
+            observer: true,
+            observeParents: true
+        });
+        swiper_banner.init();
+    })
+</script>

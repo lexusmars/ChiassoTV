@@ -43,4 +43,4 @@ define("EPISODE_LINK_FORMAT", URL . "episodio/player/%d");
 define("CATEGORY_LINK_FORMAT", URL . "serie/episodi/%d");
 
 /* FOR APIs */
-define('API_TOKEN', "test_token");
+define('API_TOKEN', "coG8HDcz5LcdQ2pb0vFJNwx0EiLwHgZa");

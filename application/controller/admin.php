@@ -23,8 +23,22 @@ class Admin
     /* Loads home page with website statistics */
     public function home(){
         if(Auth::isAuthenticated()){
+
+            // Count banners
+            $tot_banners = BannerModel::countBanners();
+
+            // Count clients
+            $tot_clients = ClientModel::countClients();
+
+            // Calculate tot earnings
+            $tot_earnings = BannerModel::calculateTotalEarnings();
+
             ViewLoader::load("admin/templates/header");
-            ViewLoader::load("admin/index");
+            ViewLoader::load("admin/index", array(
+                "tot_banners" => $tot_banners,
+                "tot_clients" => $tot_clients,
+                "tot_earnings" => $tot_earnings
+            ));
             ViewLoader::load("admin/templates/footer");
         }
         else{
@@ -81,7 +95,7 @@ class Admin
             // Load data
             $banner_images = BannerModel::getBannerImages();
             $subscription_types = SubscriptionModel::getSubscriptionTypes();
-            $banners = BannerModel::getBanners();
+            $banners = BannerModel::getBannersRandomOrder();
 
             $isDataOk = count($banner_images) > 0 && count($subscription_types) > 0;
             ViewLoader::load("admin/templates/header");

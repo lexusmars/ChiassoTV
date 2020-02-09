@@ -172,7 +172,7 @@ class Api
 
             if($action=="update" && $_SERVER["REQUEST_METHOD"] == "POST" && !is_null($index)){
                 // Sanitize POST data and add record to database
-                $result = BannerModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING), $id);
+                $result = BannerModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING), $index);
 
                 // If it detects errors
                 if(is_array($result)){
@@ -184,6 +184,7 @@ class Api
             }
         }
         else{
+            header("Access-Control-Allow-Origin: *");
             // This API returns a random video per category
             if(is_null($action) && is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 // Set page content type

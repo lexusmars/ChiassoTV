@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form">
-                                        <input type="date" id="end_date" class="form-control" name="end_date" required>
+                                        <input type="date" id="end_date" class="form-control" name="end_date" required readonly>
                                         <label for="end_date">Data di fine<span
                                                     class="text-danger font-weight-bold">*</span></label>
                                     </div>
@@ -339,6 +339,9 @@
 
         // Set default date (today)
         $("#start_date").val(moment().format("YYYY-MM-DD"));
+
+        // Trigger change
+        $("#start_date").trigger('change');
     });
 
     function update_banner_thumbnail() {

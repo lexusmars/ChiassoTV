@@ -54,6 +54,11 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
   }
+
+  .banner{
+    padding: 10px;
+    width: auto !important;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -66,7 +71,6 @@
     margin-left: 0vh !important;
     width: 100%;
     max-width: 30vh;
-
   }
 }
 
@@ -75,10 +79,8 @@ footer li{
 }
 
 .banner{
-  max-height: 30vh !important;
-}
-
-.newest-episodes-div{
+  height: 23vh !important;
+  /*max-height: 30vh !important;*/
 }
 
 .swiper-container {
@@ -122,5 +124,3 @@ footer li{
 .image-slide {
   height:auto !important;
 }
-
-/* Override mdb style */

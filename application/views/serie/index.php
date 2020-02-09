@@ -11,6 +11,42 @@
             </div>
         </div>
 
+        <?php if (count($banners) > 0): ?>
+            <div class="container-fluid mb-3 mt-5 overflow-hidden">
+                <div class="swiper-banner-container">
+                    <div class="swiper-wrapper image-slider-wrapper">
+                        <?php foreach($banners as $banner): ?>
+                            <div class="swiper-slide image-slide">
+                                <!--Zoom effect-->
+                                <div class="view overlay">
+                                    <?php if(strlen($banner->getLink()) > 0): ?>
+                                        <a href="<?php echo $banner->getLink();?>" target="_blank">
+                                            <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                                 class="img-fluid"
+                                                 alt="Sponsor banner">
+                                        </a>
+                                    <?php else: ?>
+                                        <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                             class="img-fluid"
+                                             alt="Sponsor banner">
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- Add Arrows -->
+                    <div class="swiper-banner-button-next text-danger font-weight-bold"></div>
+                    <div class="swiper-banner-button-before text-danger font-weight-bold"></div>
+                </div>
+            </div>
+            <!-- Sponsor -->
+            <div id="banner-spacer" class="mb-5"></div>
+            <br>
+        <?php endif; ?>
+
         <!-- Categories container -->
         <div class="p-3 wow fadeIn">
             <!-- Container -->
@@ -71,8 +107,27 @@
     </div>
 </main>
 
+<script src="/application/assets/js/addons/swiper.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Init slider
+        let swiper_banner = new Swiper('.swiper-banner-container', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 40,
+            loop: true,
+            speed: 1000,
+            automaticResize: true,
+            autoplay: {
+                delay: 1000,
+                disableOnInteraction: false,
+                waitForTransition: true,
+            },
+            observer: true,
+            observeParents: true
+        });
+        swiper_banner.init();
+
         // Hide loader
         $('#loader').addClass("d-none");
 
@@ -80,6 +135,5 @@
         $('main').removeClass("d-none");
         $('header').removeClass("d-none");
         $('footer').removeClass("d-none");
-
     })
 </script>

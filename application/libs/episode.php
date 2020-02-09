@@ -21,11 +21,11 @@ class Episode
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
-    public function getCreationDatetime(): string
+    public function getCreationDatetime(): DateTime
     {
-        return $this->created_on;
+        return date_create_from_format("Y-m-d H:i:s", $this->created_on);
     }
 
     /**

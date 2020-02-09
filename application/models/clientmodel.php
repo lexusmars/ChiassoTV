@@ -10,6 +10,10 @@ class ClientModel
         return self::parseClients($result);
     }
 
+    public static function countClients()
+    {
+        return DB::query("SELECT count(*) FROM client")[0]["count(*)"];
+    }
     public static function getClient($id){
         $result = DB::query("SELECT * FROM client WHERE id=%d",$id);
         return self::parseClient($result[0]);

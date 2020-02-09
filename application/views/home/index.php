@@ -1,5 +1,4 @@
 <main class="d-none">
-    <?php var_dump($banners); ?>
     <!-- Chiasso News -->
     <div class="container-fluid p-0">
         <div id="chiassoNewsVideo" class="w-100 p-4"
@@ -8,10 +7,14 @@
             <!-- Spacer -->
             <div class="title-spacer" style="height: 10vh;"></div>
 
-            <h1 class="card-title h1-responsive pt-3 mb-5 font-bold text-center"><strong>
+            <h1 class="card-title h1-responsive pt-3 mb-5 font-bold text-center text-white"><strong>
+                    <!--
                     <span style="color: rgb(21,101,192)">Chiasso</span>
                     <span class="font-weight-bold" style="color: rgba(198,40,40, 0.8)">News</span>
-                </strong></h1>
+                    -->
+                    Chiasso TV
+                </strong>
+            </h1>
             <div class="row justify-content-center">
                 <?php if(isset($chiasso_news_episode)): ?>
                     <div class="embed-responsive embed-responsive-16by9" style="max-width: 50rem;">
@@ -29,6 +32,41 @@
             </div>
         </div>
     </div>
+
+    <?php if (count($banners) > 0): ?>
+        <!-- Sponsor -->
+        <div class="container-fluid mb-3 mt-5 overflow-hidden">
+            <div class="swiper-banner-container">
+                <div class="swiper-wrapper image-slider-wrapper">
+                    <?php foreach($banners as $banner): ?>
+                        <div class="swiper-slide image-slide">
+                            <!--Zoom effect-->
+                            <div class="view overlay">
+                                <?php if(strlen($banner->getLink()) > 0): ?>
+                                    <a href="<?php echo $banner->getLink();?>" target="_blank">
+                                        <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                             class="img-fluid"
+                                             alt="Sponsor banner">
+                                    </a>
+                                <?php else: ?>
+                                    <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                         class="img-fluid"
+                                         alt="Sponsor banner">
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- Add Arrows -->
+                <div class="swiper-banner-button-next text-danger font-weight-bold"></div>
+                <div class="swiper-banner-button-before text-danger font-weight-bold"></div>
+            </div>
+        </div>
+        <!-- Sponsor -->
+    <?php endif; ?>
 
     <div id="categories-container" class="container-fluid">
         <div class="row">
@@ -100,50 +138,6 @@
         </div>
         <!-- Categories container -->
     </div>
-
-    <?php if (count($banners) > 0): ?>
-    <!-- Sponsor -->
-    <div class="container-fluid" id="sponsors">
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <h1 class="text-center h1-responsive">Sponsor</h1>
-                <hr>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid mb-5">
-        <div class="swiper-banner-container">
-            <div class="swiper-wrapper image-slider-wrapper">
-                <?php foreach($banners as $banner): ?>
-                    <div class="swiper-slide image-slide">
-                        <!--Zoom effect-->
-                        <div class="view overlay">
-                            <?php if(strlen($banner->getLink()) > 0): ?>
-                                <a href="<?php echo $banner->getLink();?>" target="_blank">
-                                    <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
-                                         class="img-fluid"
-                                         alt="Sponsor banner">
-                                </a>
-                            <?php else: ?>
-                                <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
-                                     class="img-fluid"
-                                     alt="Sponsor banner">
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-
-            <!-- Add Arrows -->
-            <div class="swiper-banner-button-next text-danger font-weight-bold"></div>
-            <div class="swiper-banner-button-before text-danger font-weight-bold"></div>
-        </div>
-    </div>
-    <!-- Sponsor -->
-    <?php endif; ?>
 
     <!-- Partner -->
     <div id="partner-container" class="container-fluid purple-background" style="background-color: #5252d4;">

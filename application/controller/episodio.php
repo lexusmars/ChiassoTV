@@ -21,12 +21,17 @@ class Episodio
                 ViewLoader::load("templates/404");
             }
             else{
+
+                // Load banners
+                $banners = BannerModel::getBannersRandomOrder();
+
                 ViewLoader::load('episodio/templates/header');
 
                 ViewLoader::load('_globals/loading_screen');
 
                 ViewLoader::load('episodio/index', array(
                     "episode" => $episode,
+                    "banners" => $banners
                 ));
 
                 ViewLoader::load("_globals/loading_handler");
