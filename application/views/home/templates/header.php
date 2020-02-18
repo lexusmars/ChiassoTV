@@ -33,7 +33,7 @@
     <!-- Material Design Bootstrap -->
     <link href="/application/assets/css/mdb.min.css" rel="stylesheet">
     <!-- Swiper.js style -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="/application/assets/css/swiper.min.css">
     <!-- JQuery -->
     <script type="text/javascript" src="/application/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Personal stylesheet -->

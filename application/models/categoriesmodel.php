@@ -105,7 +105,8 @@ class CategoriesModel
                 $row["description"],
                 $row["created_at"],
                 $row["last_edit_at"],
-                $row["img_path"]
+                $row["img_path"],
+                $row["shown_on_display"]
             );
         }
 

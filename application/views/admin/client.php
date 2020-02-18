@@ -256,34 +256,8 @@
 <script src="/application/assets/js/addons/datatables.min.js"></script>
 <script>
     $(document).ready(function () {
-        //update banner thumbnail after page load
-        update_banner_thumbnail();
-
         $("#clientsTable").dataTable({
             responsive: true,
         });
-
-        $("#bannerSelector").on("change",function () {
-            update_banner_thumbnail();
-        });
-
-        // Load smart select
-        $('#select-client').selectize({
-            create: false,
-            sortField: {
-                field: 'text',
-                direction: 'asc'
-            },
-            dropdownParent: 'body'
-        });
     });
-
-    function update_banner_thumbnail(){
-        // Get image and generate link
-        let selected_filename = $("#bannerSelector").children("option:selected").val();
-        let link = "<?php echo BANNERS_IMG_LINK ?>" + selected_filename;
-
-        // Setup link
-        $("#banner-thumbnail").prop("src", link);
-    }
 </script>

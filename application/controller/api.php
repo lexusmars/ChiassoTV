@@ -12,74 +12,69 @@ class Api
     // admin/category/delete/<index>
     // admin/category/add
     // api/category/update/<index>
-    public function category($action=null, $index=null){
-        if(Auth::isAuthenticated()){
+    public function category($action = null, $index = null)
+    {
+        if (Auth::isAuthenticated()) {
             $GLOBALS["NOTIFIER"]->clear();
-            if($action=="delete" && !is_null($index)){
-                if(!CategoriesModel::delete($index)){
+            if ($action == "delete" && !is_null($index)) {
+                if (!CategoriesModel::delete($index)) {
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare la categoria.");
-                }
-                else{
+                } else {
                     $GLOBALS["SITEMAP_HANDLER"]->removeLink(sprintf(CATEGORY_LINK_FORMAT, $index));
                 }
-            }
-            elseif($action == "add" && $_SERVER["REQUEST_METHOD"] == "POST"){
+            } elseif ($action == "add" && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and add record to database
                 $result = CategoriesModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
-                }
-                else{
+                } else {
                     $category_id = DB::insertId();
                     $curr_date = new DateTime();
 
                     $GLOBALS["SITEMAP_HANDLER"]->addLink(sprintf(CATEGORY_LINK_FORMAT, $category_id),
                         $curr_date->format("Y-m-d"));
                 }
-            }
-            elseif($action == "update" && !is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST"){
+            } elseif ($action == "update" && !is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and add record to database
                 $result = CategoriesModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING), $index);
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
             }
 
             Application::redirect("admin/categories");
-        }
-        else{
+        } else {
             Application::redirect("");
         }
     }
 
-    public function episode($action=null, $category=null, $episode=null){
-        if(Auth::isAuthenticated()){
+    public function episode($action = null, $category = null, $episode = null)
+    {
+        if (Auth::isAuthenticated()) {
             $GLOBALS["NOTIFIER"]->clear();
-            if($action=="delete" && !is_null($category) && !is_null($episode)){
-                if(!EpisodeModel::delete($episode, $category)){
+            if ($action == "delete" && !is_null($category) && !is_null($episode)) {
+                if (!EpisodeModel::delete($episode, $category)) {
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare la categoria.");
-                }
-                else{
+                } else {
                     // Remove link from sitemap
                     $GLOBALS["SITEMAP_HANDLER"]->removeLink(sprintf(EPISODE_LINK_FORMAT, $episode));
                 }
                 Application::redirect("admin/episodes/$category");
             }
 
-            if($action=="add" && !is_null($category) && $_SERVER["REQUEST_METHOD"] == "POST"){
+            if ($action == "add" && !is_null($category) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and add record to database
                 $result = EpisodeModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING),
                     $_SESSION["user"]->getUsername(), $category);
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
-                }
-                else{
+                } else {
                     $video_id = DB::insertId();
                     $curr_date = new DateTime();
 
@@ -90,14 +85,14 @@ class Api
                 Application::redirect("admin/episodes/$category");
             }
 
-            if($action=="update" && !is_null($category) && !is_null($episode) && $_SERVER["REQUEST_METHOD"] == "POST"){
+            if ($action == "update" && !is_null($category) && !is_null($episode) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 //TODO: Finish update
                 // Sanitize POST data and add record to database
                 $result = EpisodeModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING),
                     $_SESSION["user"]->getUsername(), $category, $episode);
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
 
@@ -105,51 +100,50 @@ class Api
             }
 
             Application::redirect("admin/episodes");
-        }
-        else{
+        } else {
             Application::redirect("");
         }
     }
 
-    public function image($action=null, $image_type=null){
-        if(Auth::isAuthenticated()){
+    public function image($action = null, $image_type = null)
+    {
+        if (Auth::isAuthenticated()) {
             // Upload banner image
-            if($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST"
-                && $image_type==ImageApi::IMAGE_BANNER && isset($_FILES["category_image_upload"])){
+            if ($action == ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST"
+                && $image_type == ImageApi::IMAGE_BANNER && isset($_FILES["category_image_upload"])) {
 
                 // Upload image to server
                 $result = ImageModel::uploadFile($_FILES["category_image_upload"], BANNERS_IMG_PATH);
 
-                if(is_string($result)){
+                if (is_string($result)) {
                     $GLOBALS["NOTIFIER"]->add($result);
                 }
                 Application::redirect("admin/banner");
-            }
-            // Upload category image
-            elseif($action==ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST" &&
-                isset($_FILES["category_image_upload"])){
+            } // Upload category image
+            elseif ($action == ImageApi::UPLOAD_ACTION && $_SERVER["REQUEST_METHOD"] == "POST" &&
+                isset($_FILES["category_image_upload"])) {
 
                 // Setup final path
                 $result = ImageModel::uploadFile($_FILES["category_image_upload"], CATEGORIES_IMG_PATH);
 
-                if(is_string($result)){
+                if (is_string($result)) {
                     $GLOBALS["NOTIFIER"]->add($result);
                 }
 
                 Application::redirect("admin/categories");
             }
-        }
-        else{
+        } else {
             Application::redirect("");
         }
     }
 
-    public function banner($action=null, $index=null){
-        if(Auth::isAuthenticated()){
+    public function banner($action = null, $index = null)
+    {
+        if (Auth::isAuthenticated()) {
             $GLOBALS["NOTIFIER"]->clear();
             // DELETE BANNER
-            if($action=="delete" && !is_null($index)){
-                if(!BannerModel::delete($index)){
+            if ($action == "delete" && !is_null($index)) {
+                if (!BannerModel::delete($index)) {
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare il banner.");
                 }
 
@@ -157,12 +151,12 @@ class Api
             }
 
             // ADD NEW BANNER
-            if($action=="add" && $_SERVER["REQUEST_METHOD"] == "POST"){
+            if ($action == "add" && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and add record to database
                 $result = BannerModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
 
@@ -170,116 +164,137 @@ class Api
                 Application::redirect("admin/banner");
             }
 
-            if($action=="update" && $_SERVER["REQUEST_METHOD"] == "POST" && !is_null($index)){
+            if ($action == "update" && $_SERVER["REQUEST_METHOD"] == "POST" && !is_null($index)) {
                 // Sanitize POST data and add record to database
                 $result = BannerModel::update(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING), $index);
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
 
                 // Redirect back
                 Application::redirect("admin/banner");
             }
-        }
-        else{
+        } else {
             header("Access-Control-Allow-Origin: *");
             // This API returns a random video per category
-            if(is_null($action) && is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST"){
+            if (is_null($action) && is_null($index) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
                 // Set page content type
-                Header("Content-Type: json");
+                header('Content-Type: application/json');
 
                 // Check if token was sent
-                if(isset($_POST["token"])){
+                if (isset($_POST["token"])) {
                     // Check if token is right
-                    if($_POST["token"] == API_TOKEN){
+                    if ($_POST["token"] == API_TOKEN) {
                         // Right token sent
 
                         // Read data from database
                         $episodes = [];
 
-                        $available_categories = CategoriesModel::getCategories();
+                        $available_categories = DisplayModel::getEnabledCategories();
                         // Get random episode per category
-                        foreach($available_categories as $category){
+                        foreach ($available_categories as $category) {
                             // Get all episodes
 
                             // Check if the category has actually episodes
                             $category_episodes = EpisodeModel::getCategoryEpisodes($category);
 
-                            if(count($category_episodes) > 0){
+                            if (count($category_episodes) > 0) {
                                 // Get random episode
-                                $episodes[] = $category_episodes[rand(0, count($category_episodes)-1)];
-                            }
-                            else{
+                                $episodes[] = $category_episodes[rand(0, count($category_episodes) - 1)];
+                            } else {
                                 // Skip category
                                 continue;
                             }
                         }
 
                         echo json_encode($episodes);
-                    }
-                    else{
+                    } else {
                         // Wrong token
-                        return json_encode(array("status"=>"failed", "message"=>"wrong token"));
+                        echo json_encode(array("status" => "failed", "message" => "wrong token"));
                     }
-                }
-                else{
+                } else {
                     // Token wasn't sent
-                    return json_encode(array("status"=>"failed", "message"=>"missing token"));
+                    echo json_encode(array("status" => "failed", "message" => "missing token"));
                 }
-            }
-            else{
+            } else {
                 Application::redirect("");
             }
         }
     }
 
-    public function client($action=null, $client=null){
-        if(Auth::isAuthenticated()){
+    public function client($action = null, $client = null)
+    {
+        if (Auth::isAuthenticated()) {
             $GLOBALS["NOTIFIER"]->clear();
 
-            if($action=="delete" && !is_null($client)){
-                if(!ClientModel::delete($client)){
+            if ($action == "delete" && !is_null($client)) {
+                if (!ClientModel::delete($client)) {
                     $GLOBALS["NOTIFIER"]->add("Non sono riuscito ad eliminare l'utente.");
                 }
 
                 Application::redirect("admin/client");
-            }
-            // ADD NEW CLIENT
-            elseif($action=="add" && $_SERVER["REQUEST_METHOD"] == "POST"){
+            } // ADD NEW CLIENT
+            elseif ($action == "add" && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and add record to database
                 $result = ClientModel::add(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
 
                 // Redirect back
                 Application::redirect("admin/client");
-            }
-            // UPDATE CLIENT
-            elseif($action=="update" && !is_null($client) && $_SERVER["REQUEST_METHOD"] == "POST"){
+            } // UPDATE CLIENT
+            elseif ($action == "update" && !is_null($client) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 // Sanitize POST data and update record to database
                 $result = ClientModel::update($client, filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
                 // If it detects errors
-                if(is_array($result)){
+                if (is_array($result)) {
                     $GLOBALS["NOTIFIER"]->add_all($result);
                 }
 
                 // Redirect back
                 Application::redirect("admin/client");
             }
-        }
-        else{
+        } else {
             Application::redirect("");
+        }
+    }
+
+    public function display($action = null, $client = null)
+    {
+        header('Content-Type: application/json');
+
+        if (Auth::isAuthenticated()) {
+            if ($action == "update" && $_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $result = DisplayModel::updateEnabledCategories(filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+
+                    if (!is_array($result)) {
+                        echo json_encode(array("success" => true, "message" => "Modifiche applicate"));
+                    } else {
+                        echo json_encode(array("success" => false, "errors" => $result));
+                    }
+                } else {
+                    // Wrong method
+                    echo json_encode(array("success" => false, "errors" => "This API requires a POST request"));
+                }
+            } else {
+                echo json_encode(array("success" => false, "errors" => "Unknown operation"));
+            }
+        } else {
+            echo json_encode(array("success" => false, "errors" => "User must be logged in as administrator"));
         }
     }
 }
 
-abstract class ImageApi{
+abstract class ImageApi
+{
     public const UPLOAD_ACTION = "upload";
     public const IMAGE_BANNER = "banner";
 }

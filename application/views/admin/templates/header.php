@@ -107,6 +107,11 @@
                             Gestione clienti
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="<?php echo Application::buildUrl('admin/display') ?>" target="_top">
+                            Gestione display
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right -->

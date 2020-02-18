@@ -100,7 +100,7 @@
                                         <td id="episodeTitle"><?php echo $episode->getTitle(); ?></td>
                                         <td id="episodeDescription"><?php echo $episode->getDescription(); ?></td>
                                         <td id="episodeLink" episode-identifier="<?php echo $episode->getLink();?>"><a href="https://www.youtube.com/watch?v=<?php echo $episode->getLink();?>">Apri video</a></td>
-                                        <td id="episodeCreationDatetime"><?php echo $episode->getCreationDatetime(); ?></td>
+                                        <td id="episodeCreationDatetime"><?php echo $episode->getCreationDatetime()->format("d.m.Y H:i"); ?></td>
                                         <td>
                                             <button class="btn btn-blue-grey edit-episode-button"
                                                     episode-target="<?php echo $episode->getEpisodeIdentifierNumber();?>">
