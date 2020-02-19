@@ -21,7 +21,7 @@ class BannerModel
     }
 
     public static function calculateTotalEarnings(): int{
-        return (int) DB::query("SELECT sum(Subscription.cost) FROM banner INNER JOIN subscription ON banner.type=subscription.name")[0]["sum(Subscription.cost)"];
+        return (int) DB::query("SELECT sum(subscription.cost) FROM banner INNER JOIN subscription ON banner.type=subscription.name")[0]["sum(Subscription.cost)"];
     }
 
     public static function getAvailableBanners(): array{
