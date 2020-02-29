@@ -119,7 +119,7 @@
             speed: 1000,
             automaticResize: true,
             autoplay: {
-                delay: 1000,
+                delay: <?php echo BANNER_SWIPER_DELAY; ?>,
                 disableOnInteraction: false,
                 waitForTransition: true,
             },

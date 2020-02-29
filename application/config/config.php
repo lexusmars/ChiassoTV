@@ -44,3 +44,7 @@ define("CATEGORY_LINK_FORMAT", URL . "serie/episodi/%d");
 
 /* FOR APIs */
 define('API_TOKEN', "coG8HDcz5LcdQ2pb0vFJNwx0EiLwHgZa");
+
+
+/* FOR BANNER SWIPERS */
+define("BANNER_SWIPER_DELAY", 5000);

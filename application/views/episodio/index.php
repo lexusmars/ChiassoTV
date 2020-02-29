@@ -11,6 +11,7 @@
                 </a>
             </div>
         </div>
+
         <!-- Header -->
         <?php if (count($banners) > 0): ?>
             <div class="container-fluid mb-3 mt-5 overflow-hidden">
@@ -43,13 +44,12 @@
         <?php endif; ?>
 
         <div id="video-container" class="wow fadeIn">
-            <div id="video-container" class="container mb-5">
+            <div id="video-container" class="container mb-2">
                 <h1 class="card-title h1-responsive pt-3 font-bold text-center">
                     <strong><?php echo $episode->getTitle();?></strong>
                 </h1>
                 <!-- Divider + Space bottom -->
                 <hr>
-
 
                 <div class="row justify-content-center p-3">
                     <div class="embed-responsive embed-responsive-16by9" style="max-width: 120vh;">
@@ -59,15 +59,48 @@
                                 frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
+            </div>
 
+            <!-- Sponsors -->
+            <?php if (count($banners) > 0): ?>
+                <div class="container-fluid overflow-hidden">
+                    <div class="swiper-banner-container">
+                        <div class="swiper-wrapper image-slider-wrapper">
+                            <?php foreach($banners as $banner): ?>
+                                <div class="swiper-slide image-slide">
+                                    <!--Zoom effect-->
+                                    <div class="view overlay">
+                                        <?php if(strlen($banner->getLink()) > 0): ?>
+                                            <a href="<?php echo $banner->getLink();?>" target="_blank">
+                                                <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                                     class="img-fluid"
+                                                     alt="Sponsor banner">
+                                            </a>
+                                        <?php else: ?>
+                                            <img class="banner w-100" src="<?php echo BANNERS_IMG_LINK . $banner->getImgName()?>"
+                                                 class="img-fluid"
+                                                 alt="Sponsor banner">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sponsor -->
+                <div id="banner-spacer" class="mb-2"></div>
+                <br>
+            <?php endif; ?>
+
+            <div class="container mb-5" id="actionButtons">
                 <div class="row" role="group" aria-label="Action buttons">
-                    <div class="col-md-3">
+                    <div class="col">
                         <button class="btn btn-outline-primary waves-effect w-100" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false"
                                 aria-controls="collapseDescription" id="collapseButtonDesc">
                             Leggi descrizione
                         </button>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col">
                         <button class="btn btn-outline-danger waves-effect w-100" type="button" data-toggle="collapse" data-target="#collapseVideoInfos"
                                 aria-expanded="false" aria-controls="collapseVideoInfos" id="collapseButtonInfos">
                             Mostra informazioni
@@ -110,6 +143,9 @@
                     </div>
                 </div>
                 <!-- / Collapsible element -->
+
+
+
             </div>
         </div>
     </div>
@@ -129,7 +165,7 @@
             speed: 1000,
             automaticResize: true,
             autoplay: {
-                delay: 1000,
+                delay: <?php echo BANNER_SWIPER_DELAY; ?>,
                 disableOnInteraction: false,
                 waitForTransition: true,
             },

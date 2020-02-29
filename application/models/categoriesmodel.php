@@ -42,10 +42,19 @@ class CategoriesModel
 
     public static function add(array $data){
         if(self::validate($data)){
+
+            $result = DB::insert("category", array(
+                "name" => $data["categoryName"],
+                "description" => $data["categoryDescription"],
+                "img_path" => basename($data["categoryImagePath"])
+            ));
+
+            /*
             $result = DB::query("INSERT INTO category VALUES(0,%s,%s,NOW(),NOW(),%s)", $data["categoryName"],
                 $data["categoryDescription"], basename($data["categoryImagePath"]));
+            */
 
-            return !$result ? array("C'è stato un problema durante l'inserimento dei dati all'interno del 
+             return !$result ? array("C'è stato un problema durante l'inserimento dei dati all'interno del 
                 database. Se l'errore persiste contatta l'amministratore") : true;
         }
         else{
