@@ -10,8 +10,6 @@ class Application
 
     public function __construct()
     {
-
-
         $this->splitUrl(); //funzione da creare per dividere l'URL
 
         // Check for 'robots.txt'
