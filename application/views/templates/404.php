@@ -1,5 +1,7 @@
 <html>
 <head>
+    <?php ViewLoader::load("templates/analytics"); ?>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -34,9 +36,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-    <!-- Swiper Js Stylesheet -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-
     <style>
         .al-404 {
             background-attachment: fixed;
@@ -61,7 +60,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col d-table">
-                    <div class="al-404 text-center d-table-cell align-middle animated slideInDown">
+                    <div class="text-center d-table-cell align-middle wow slideInDown vh-100">
                         <h1 class="font-weight-bold mb-4 h1-responsive text-white">Oops!</h1>
                         <h4 class="h4-responsive text-white">la pagina che stai cercando non esiste...</h4>
                         <a class="btn btn-danger mt-4 text-uppercase" href="/home">torna alla homepage</a>
@@ -71,5 +70,18 @@
         </div>
     </section>
 </body>
+
+<!-- JQuery -->
+<script type="text/javascript" src="/application/assets/js/jquery-3.4.1.min.js"></script>
+
+<!-- Wow.js -->
+<script type="text/javascript" src="/application/assets/js/modules/wow.js"></script>
+
+<!-- Initializations -->
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+</script>
+
 </html>
 
