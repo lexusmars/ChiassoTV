@@ -21,7 +21,10 @@ class Application
             ViewLoader::loadFile("crawlers/sitemap.xml", ViewLoader::CONTENT_TYPE_XML);
             exit();
         }
-
+        elseif($this->url_controller == "google5f5650bb5e8ff8c0.html"){
+            ViewLoader::loadFile("crawlers/google5f5650bb5e8ff8c0.html", ViewLoader::CONTENT_TYPE_TEXT);
+            exit();
+        }
 
         /* Maintenance check -> only admins can access the website */
         if(MAINTENANCE && $this->url_controller != "admin" && !Auth::isAuthenticated()){
